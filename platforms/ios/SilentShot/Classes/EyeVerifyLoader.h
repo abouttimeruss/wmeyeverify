@@ -3,8 +3,6 @@
 //  EyeprintID
 //
 
-#import <Cordova/CDVPlugin.h>
-
 #import <EyeVerify/EyeVerify.h>
 
 #import <Foundation/Foundation.h>
