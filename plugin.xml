@@ -36,6 +36,7 @@
         <source-file src="platforms/ios/SilentShot/Classes/IrisAccess.m" />
         <header-file src="platforms/ios/SilentShot/Classes/EyeVerifyLoader.h" />
         <source-file src="platforms/ios/SilentShot/Classes/EyeVerifyLoader.m" />
+        <header-file src="platforms/ios/EyeVerify.framework/Headers/EyeVerify.h" />
 
 
     </platform>
