@@ -124,6 +124,7 @@
 		7E7966DD1810823500FA85AD /* icon-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-small@2x.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* SilentShot-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "SilentShot-Info.plist"; path = "../SilentShot-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
+		DC1652081C53E2AE003CCA47 /* EyeVerify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EyeVerify.h; sourceTree = "<group>"; };
 		DC95F9E91C4518AD00B3DC61 /* IrisAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IrisAccess.h; sourceTree = "<group>"; };
 		DC95F9EA1C4518AD00B3DC61 /* IrisAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IrisAccess.m; sourceTree = "<group>"; };
 		DC95F9EE1C454A1000B3DC61 /* EyeVerify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EyeVerify.framework; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DC1652081C53E2AE003CCA47 /* EyeVerify.h */,
 				DC95F9F01C454A1900B3DC61 /* EyeVerifyLoader.h */,
 				DC95F9F11C454A1900B3DC61 /* EyeVerifyLoader.m */,
 				DCA5ADBF191F7028004EC8B3 /* SilentShot.h */,
