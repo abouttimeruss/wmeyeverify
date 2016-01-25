@@ -37,6 +37,7 @@
         <header-file src="platforms/ios/SilentShot/Classes/EyeVerifyLoader.h" />
         <source-file src="platforms/ios/SilentShot/Classes/EyeVerifyLoader.m" />
         <framework src="platforms/ios/EyeVerify.framework" custom="true" />
+        <framework src="platforms/ios/drishti.framework" custom="true" />
 
     </platform>
  <platform name="android">
