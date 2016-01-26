@@ -88,6 +88,7 @@
             NSLog(@"Enrollment: enrolled=%d; userKey=%@ error=%@", enrolled, userKey != nil ? [[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding] : @"nil", error);
             if(enrolled)
             {
+                
                 result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding]];
 
             }
@@ -117,7 +118,7 @@
             NSLog(@"Verifying: verified=%d; userKey=%@ error=%@", verified, userKey != nil ? [[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding] : @"nil", error);
             if(verified)
             {
-                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:@[@(verified), userNameFromOptions]];
+                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:@[@(verified), userKey != nil ? [[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding] : @"nil"]];
                 //result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Verified"];
             }
             else
