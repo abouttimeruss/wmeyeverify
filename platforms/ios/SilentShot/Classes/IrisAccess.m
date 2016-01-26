@@ -117,11 +117,12 @@
             NSLog(@"Verifying: verified=%d; userKey=%@ error=%@", verified, userKey != nil ? [[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding] : @"nil", error);
             if(verified)
             {
-                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Verified"];
+                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:@[@(verified), userNameFromOptions]];
+                //result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Verified"];
             }
             else
             {
-                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Not Verified"];
+                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:@[@(verified), @"Not Verified"]];
 
             }
 
@@ -167,7 +168,7 @@
         }
         if(arguments[@"userKey"])
         {
-            userNameFromOptions = arguments[@"userKey"];
+            userKeyFromOptions = arguments[@"userKey"];
             
         }
         NSLog(@"userName: %@   userKey: %@   scanType: %li", userNameFromOptions, userKeyFromOptions, scanType);
