@@ -8,7 +8,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0-beta2'
+        //classpath 'com.android.tools.build:gradle:2.0.0-beta2'
+        classpath 'com.android.tools.build:gradle:1.5.0'
     }
 }
 
@@ -27,8 +28,8 @@ dependencies {
     for (subproject in getProjectList()) {
         compile project(subproject)
     }
-    compile(name:'EVServiceInterface', ext:'aar')
-    compile(name:'EVServiceImplementation', ext:'aar')
+    compile(name: 'EVServiceInterface', ext: 'aar')
+    compile(name: 'EVServiceImplementation', ext: 'aar')
 }
 
 android {
@@ -48,7 +49,7 @@ android {
         versionCode Integer.parseInt("" + getVersionCodeFromManifest() + "0")
     }
 
-    compileSdkVersion 21
+    compileSdkVersion 19
     buildToolsVersion "21.1.2"
 
     if (multiarch || System.env.BUILD_MULTIPLE_APKS) {
