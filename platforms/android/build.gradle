@@ -14,11 +14,21 @@ buildscript {
 
 ext.multiarch=false
 
+allprojects {
+    repositories {
+        jcenter()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     for (subproject in getProjectList()) {
         compile project(subproject)
     }
+    compile(name:'EVServiceInterface', ext:'aar')
+    compile(name:'EVServiceImplementation', ext:'aar')
 }
 
 android {

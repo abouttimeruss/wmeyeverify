@@ -3,8 +3,8 @@
     package="org.apache.cordova.test" >
 
     <uses-sdk
-        android:minSdkVersion="19"
-        android:targetSdkVersion="19" />
+        android:minSdkVersion="17"
+        android:targetSdkVersion="17" />
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
