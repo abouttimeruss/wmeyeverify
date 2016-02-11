@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="EVServiceInterface-">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/EVServiceInterface/res" />
       <root url="jar://$PROJECT_DIR$/build/intermediates/exploded-aar/EVServiceInterface/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/build/intermediates/exploded-aar/EVServiceInterface/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
