@@ -310,6 +310,8 @@ public class EVCaptureActivity extends BaseActivity {
         } catch ( Exception e) { }
     }
 
+
+
     void reconfigureProgressBar() {
         configureProgressBar(mStep, mTotalSteps, mCounter);
     }

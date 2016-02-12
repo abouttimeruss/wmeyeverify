@@ -20,7 +20,8 @@
 package biz.incoding.silentshot;
 
 import android.os.Bundle;
-import org.apache.cordova.*;
+
+import org.apache.cordova.CordovaActivity;
 
 public class CordovaApp extends CordovaActivity
 {
@@ -32,4 +33,18 @@ public class CordovaApp extends CordovaActivity
         // Set by <content src="index.html" /> in config.xml
         loadUrl(launchUrl);
     }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        Log.d("myLogs", "requestCode = " + requestCode + ", resultCode = " + resultCode);
+//        if(requestCode == 100){
+//            for(PluginEntry item: pluginEntries){
+//                if(item.pluginClass.equalsIgnoreCase(IrisAccess.class.getSimpleName())){
+//
+//                }
+//            }
+//            int i =0;
+//            i++;
+//        }
+//    }
 }

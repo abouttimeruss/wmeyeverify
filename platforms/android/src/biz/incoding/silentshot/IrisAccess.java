@@ -78,8 +78,9 @@ public class IrisAccess  extends CordovaPlugin {
             //intent.putExtra(EVCaptureActivity.SERVICE_PACKAGE_KEY, servicePackageKey);
 
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            this.cordova.getActivity().startActivityForResult(intent,100);
-
+            //this.cordova.getActivity().startActivityForResult(intent,100);
+            this.cordova.startActivityForResult(this,intent,100);
+            //startActivityForResult(this, intent,100);
 
 
 //            this.callbackContext.success("huihgyugyu");
@@ -93,5 +94,24 @@ public class IrisAccess  extends CordovaPlugin {
 
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        switch (requestCode) {
+            case 100: //integer matching the integer suplied when starting the activity
+                if(resultCode == android.app.Activity.RESULT_OK){
+                    //in case of success return the string to javascript
+                    String result=intent.getStringExtra("result");
+                    this.callbackContext.success(result);
+                }
+                else{
+                    //code launched in case of error
+                    String message=intent.getStringExtra("result");
+                    this.callbackContext.error(message);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
 }
