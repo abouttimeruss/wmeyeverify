@@ -53,9 +53,13 @@ public class IrisAccess  extends CordovaPlugin {
 
                 if(arguments.has("userName"))
                     userNameFromOptions = arguments.getString("userName");
+                else
+                    userNameFromOptions = "";
 
                 if(arguments.has("userKey"))
                     userKeyFromOptions = arguments.getString("userKey");
+                else
+                    userKeyFromOptions = "";
             }
             else
             {
@@ -63,12 +67,6 @@ public class IrisAccess  extends CordovaPlugin {
                 userNameFromOptions = "sample";
                 userKeyFromOptions = "1234fhshfsf678906867";
             }
-
-
-            scanType = 0;
-            userNameFromOptions = "sm";
-            userKeyFromOptions = "1234fhshfsf678906867";
-
 
             Intent intent = new Intent(this.cordova.getActivity(), EVCaptureActivity.class);
 

@@ -111,7 +111,7 @@ public class EVCaptureActivity extends BaseActivity {
 
         Intent intent = getIntent();
 
-        intent.getBooleanExtra(IS_ENROLLMENT_KEY, false);
+
 
         servicePackageName = intent.getStringExtra(SERVICE_PACKAGE_KEY);
         if (servicePackageName == null) {
@@ -153,6 +153,10 @@ public class EVCaptureActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 removeVideoOverlays();
+                Intent intent = new Intent();
+                intent.putExtra("result",  "Cancel.");
+                setResult(RESULT_CANCELED, intent);
+
                 finish();
             }
         });
@@ -163,6 +167,9 @@ public class EVCaptureActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 removeVideoOverlays();
+                Intent intent = new Intent();
+                intent.putExtra("result",  "Scanning OK.");
+                setResult(RESULT_OK, intent);
                 finish();
             }
         });
@@ -191,7 +198,9 @@ public class EVCaptureActivity extends BaseActivity {
         capture_complete_checkmark.setVisibility(View.GONE);
 
         if (isMidSession) {
-            Toast.makeText(getApplicationContext(), R.string.capture_closed_incomplete_message, Toast.LENGTH_LONG).show();
+            Intent intent = new Intent();
+            intent.putExtra("result", R.string.capture_closed_incomplete_message);
+            setResult(RESULT_CANCELED, intent);
             finish();
         } else if (!hasLaunched) {
             //must occur after window is available
@@ -209,7 +218,11 @@ public class EVCaptureActivity extends BaseActivity {
                 }
             }, 100);
         } else {
+            Intent intent = new Intent();
+            intent.putExtra("result", "Failed to connect.");
+            setResult(RESULT_CANCELED, intent);
             finish();//launched and finished, but maybe a phone call afterwards while sitting on finish screen
+
         }
     }
 
@@ -232,6 +245,9 @@ public class EVCaptureActivity extends BaseActivity {
             e.printStackTrace();
         } catch (EVServiceBusyException e) {
             Toast.makeText(getApplicationContext(), "Cannot continue, currently busy", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.putExtra("result",  "Cannot continue, currently busy");
+            setResult(RESULT_CANCELED, intent);
             finish();
         }
     }
@@ -388,7 +404,9 @@ public class EVCaptureActivity extends BaseActivity {
 
         @Override
         public void onWindowFailure() {
-            Toast.makeText(getApplicationContext(), "Camera unavailable. Please restart the device.", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent();
+            intent.putExtra("result",  "Camera unavailable. Please restart the device.");
+            setResult(RESULT_CANCELED, intent);
             finish();
         }
 
@@ -609,6 +627,7 @@ public class EVCaptureActivity extends BaseActivity {
                 }
 
                 Log.d(TAG, "Finished enrollmentCompleted: success="+ completion.isSuccess());
+
             } catch (Throwable ex) {
                 Log.e(TAG, "Failed to complete enrollment.", ex);
             }
