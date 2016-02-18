@@ -589,12 +589,17 @@ public class EVCaptureActivity extends BaseActivity {
                 }
                 else if (completion.wasAborted()) {
                     if (SharedGlobals.isLicensingError(completion.getAbortResult())) {
-//                        BaseActivity.deleteLicenseCertificate();
+                        BaseActivity.deleteLicenseCertificate();
+
+                        Intent intent = new Intent();
+                        intent.putExtra("result",  "LICENSE ERROR");
+                        setResult(RESULT_CANCELED, intent);
+
 //                        Intent groupIdActivity = new Intent(EVCaptureActivity.this, GroupIdActivity.class);
 //                        groupIdActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_ANIMATION);
 //                        groupIdActivity.putExtra(SharedGlobals.LICENSE_ERROR, completion.getAbortResult());
 //                        startActivity(groupIdActivity);
-//                        finish();
+                        finish();
                     }
 
                     showAbortMessages(completion.getAbortResult());
