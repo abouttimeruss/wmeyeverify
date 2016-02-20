@@ -96,6 +96,8 @@ public class EVCaptureActivity extends BaseActivity {
     Handler mIdleTimer;
     Runnable mIdleRunnable;
 
+    EVEnrollCompletion enrollCompletion;
+    EVVerifyCompletion verifyCompletion;
     private EVEnums.EyeStatus currentEyeStatus = EVEnums.EyeStatus.None;
 
     @Override
@@ -106,6 +108,10 @@ public class EVCaptureActivity extends BaseActivity {
         setContentView(R.layout.activity_capture);
 
         service_window = (ViewGroup) findViewById(R.id.capture_window);
+//        int w = getResources().getDisplayMetrics().widthPixels;
+//        if(w>1200) w=1200;
+//        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(w, (int) (getResources().getDisplayMetrics().density * 280));
+//        service_window.setLayoutParams(params);
         mServiceClient = new EVServiceClient(mListener, new EVServiceProperties("1DBRJYSHENYXWOK0"));
         //mServiceClient = new EVServiceClient(mListener, new EVServiceProperties(BaseActivity.readLicenseCertificate()));
 
@@ -124,6 +130,23 @@ public class EVCaptureActivity extends BaseActivity {
         mIdleRunnable = new Runnable() {
             @Override
             public void run() {
+                String res = "";
+                if(enrollCompletion != null && enrollCompletion.isSuccess()) {
+                    res = "Storing public key: encodedPublicKey=" + EVServiceHelper.data2string(enrollCompletion.getEncodedPublicKey());
+                }else if(verifyCompletion != null && verifyCompletion.isSuccess()){
+                    res = "Scanning OK.";
+                }
+                Intent intent = new Intent();
+                if(res.length() == 0) {
+                    if(large_notification_text.getText() != null)
+                        res = large_notification_text.getText().toString();
+                    else
+                        res = "unknown error";
+                    setResult(RESULT_CANCELED, intent);
+                }else{
+                    setResult(RESULT_OK, intent);
+                }
+                intent.putExtra("result",  res);
                 finish();
             }
         };
@@ -167,9 +190,23 @@ public class EVCaptureActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 removeVideoOverlays();
+                String res = "";
+                if(enrollCompletion != null && enrollCompletion.isSuccess()) {
+                    res = "Storing public key: encodedPublicKey=" + EVServiceHelper.data2string(enrollCompletion.getEncodedPublicKey());
+                }else if(verifyCompletion != null && verifyCompletion.isSuccess()){
+                    res = "Scanning OK.";
+                }
                 Intent intent = new Intent();
-                intent.putExtra("result",  "Scanning OK.");
-                setResult(RESULT_OK, intent);
+                if(res.length() == 0) {
+                    if(large_notification_text.getText() != null)
+                        res = large_notification_text.getText().toString();
+                    else
+                        res = "unknown error";
+                    setResult(RESULT_CANCELED, intent);
+                }else{
+                    setResult(RESULT_OK, intent);
+                }
+                intent.putExtra("result",  res);
                 finish();
             }
         });
@@ -552,6 +589,9 @@ public class EVCaptureActivity extends BaseActivity {
         public void enrollmentCompleted(EVEnrollCompletion completion) {
             try {
 
+                verifyCompletion = null;
+                enrollCompletion = completion;
+
                 scan_again_button.setVisibility(View.GONE);
                 cancel_button.setVisibility(View.GONE);
                 continue_button.setVisibility(View.VISIBLE);
@@ -641,6 +681,9 @@ public class EVCaptureActivity extends BaseActivity {
         @Override
         public void verificationCompleted(EVVerifyCompletion completion) {
             try {
+
+                enrollCompletion = null;
+                verifyCompletion = completion;
 
                 scan_again_button.setVisibility(View.GONE);
                 cancel_button.setVisibility(View.GONE);

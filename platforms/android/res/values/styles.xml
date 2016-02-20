@@ -1,8 +1,8 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="EyeVerifyTheme" parent="android:Theme.Holo.Light.NoActionBar.Fullscreen">
-        <!-- Customize your theme here. -->
-    </style>
+    <!--<style name="EyeVerifyTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+        <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--</style>-->
 
     <style name="splash_copyright" parent="@android:style/Widget.TextView">
         <item name="android:textColor">#fff</item>
