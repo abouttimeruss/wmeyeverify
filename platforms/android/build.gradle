@@ -50,29 +50,29 @@ android {
     }
 
     compileSdkVersion 19
-    buildToolsVersion "21.1.2"
+    buildToolsVersion '23.0.2'
 
-    if (multiarch || System.env.BUILD_MULTIPLE_APKS) {
-        productFlavors {
-            armv7 {
-                versionCode defaultConfig.versionCode + 2
-                ndk {
-                    abiFilters "armeabi-v7a", ""
-                }
-            }
-            x86 {
-                versionCode defaultConfig.versionCode + 4
-                ndk {
-                    abiFilters "x86", ""
-                }
-            }
-            all {
-                ndk {
-                    abiFilters "all", ""
-                }
-            }
-        }
-    }
+//    if (multiarch || System.env.BUILD_MULTIPLE_APKS) {
+//        productFlavors {
+//            armv7 {
+//                versionCode defaultConfig.versionCode + 2
+//                ndk {
+//                    abiFilters "armeabi-v7a", ""
+//                }
+//            }
+//            x86 {
+//                versionCode defaultConfig.versionCode + 4
+//                ndk {
+//                    abiFilters "x86", ""
+//                }
+//            }
+//            all {
+//                ndk {
+//                    abiFilters "all", ""
+//                }
+//            }
+//        }
+//    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
