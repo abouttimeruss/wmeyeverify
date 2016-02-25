@@ -87,18 +87,49 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="364" column="5" selection-start-line="364" selection-start-column="5" selection-end-line="364" selection-end-column="5" />
-              <folding />
+              <folding>
+                <element signature="e#0#33051#0" expanded="false" />
+                <element signature="imports" expanded="false" />
+                <element signature="e#3872#3873#0" expanded="false" />
+                <element signature="e#3907#3908#0" expanded="false" />
+                <element signature="e#3973#3974#0" expanded="false" />
+                <element signature="e#4010#4011#0" expanded="false" />
+                <element signature="e#11371#11372#0" expanded="false" />
+                <element signature="e#11389#11390#0" expanded="false" />
+                <element signature="e#12372#12373#0" expanded="false" />
+                <element signature="e#12412#12413#0" expanded="false" />
+                <element signature="e#12456#12457#0" expanded="false" />
+                <element signature="e#12501#12502#0" expanded="false" />
+                <element signature="e#12548#12549#0" expanded="false" />
+                <element signature="e#12593#12594#0" expanded="false" />
+                <element signature="e#13483#13484#0" expanded="false" />
+                <element signature="e#13525#13526#0" expanded="false" />
+                <element signature="e#26624#26625#0" expanded="false" />
+                <element signature="e#26689#26690#0" expanded="false" />
+                <element signature="e#26748#26749#0" expanded="false" />
+                <element signature="e#26802#26803#0" expanded="false" />
+                <element signature="e#28986#28987#0" expanded="false" />
+                <element signature="e#29015#29016#0" expanded="false" />
+                <element signature="e#29095#29096#0" expanded="false" />
+                <element signature="e#29123#29124#0" expanded="false" />
+                <element signature="e#32371#32372#0" expanded="false" />
+                <element signature="e#32413#32414#0" expanded="false" />
+                <element signature="e#32929#32930#0" expanded="false" />
+                <element signature="e#32963#32964#0" expanded="false" />
+                <element signature="e#33013#33014#0" expanded="false" />
+                <element signature="e#33047#33048#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EVCaptureActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EVCaptureActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/biz/incoding/silentshot/EVCaptureActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="358" column="0" selection-start-line="358" selection-start-column="0" selection-end-line="358" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5226537">
+              <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#34369#34416#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -114,11 +145,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73513514">
-              <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -1820,26 +1851,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
@@ -1861,8 +1872,28 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1874,7 +1905,7 @@
     <property name="android.project.structure.last.selected" value="android" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="last_opened_file_path" value="D:/temp/1447430459188_EyeVerify_Android_SDK_v2.8.2/EyeVerify_Android_SDK_AppDev_v2.8.2/EyeVerify_Android_SDK_local_v2.8.2/EVSample" />
-    <property name="device.picker.selection" value="Nexus_5_API_23" />
+    <property name="device.picker.selection" value="B00F0575FCB41CCD" />
     <property name="android.sdk.path" value="D:/eclipse3/sdk" />
   </component>
   <component name="RecentsManager">
@@ -2185,9 +2216,9 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33486766" sideWeight="0.6942402" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2566168" sideWeight="0.41911766" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2566168" sideWeight="0.41727942" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32911393" sideWeight="0.502451" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2566168" sideWeight="0.5827206" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2684,7 +2715,38 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="364" column="5" selection-start-line="364" selection-start-column="5" selection-end-line="364" selection-end-column="5" />
-          <folding />
+          <folding>
+            <element signature="e#0#33051#0" expanded="false" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#3872#3873#0" expanded="false" />
+            <element signature="e#3907#3908#0" expanded="false" />
+            <element signature="e#3973#3974#0" expanded="false" />
+            <element signature="e#4010#4011#0" expanded="false" />
+            <element signature="e#11371#11372#0" expanded="false" />
+            <element signature="e#11389#11390#0" expanded="false" />
+            <element signature="e#12372#12373#0" expanded="false" />
+            <element signature="e#12412#12413#0" expanded="false" />
+            <element signature="e#12456#12457#0" expanded="false" />
+            <element signature="e#12501#12502#0" expanded="false" />
+            <element signature="e#12548#12549#0" expanded="false" />
+            <element signature="e#12593#12594#0" expanded="false" />
+            <element signature="e#13483#13484#0" expanded="false" />
+            <element signature="e#13525#13526#0" expanded="false" />
+            <element signature="e#26624#26625#0" expanded="false" />
+            <element signature="e#26689#26690#0" expanded="false" />
+            <element signature="e#26748#26749#0" expanded="false" />
+            <element signature="e#26802#26803#0" expanded="false" />
+            <element signature="e#28986#28987#0" expanded="false" />
+            <element signature="e#29015#29016#0" expanded="false" />
+            <element signature="e#29095#29096#0" expanded="false" />
+            <element signature="e#29123#29124#0" expanded="false" />
+            <element signature="e#32371#32372#0" expanded="false" />
+            <element signature="e#32413#32414#0" expanded="false" />
+            <element signature="e#32929#32930#0" expanded="false" />
+            <element signature="e#32963#32964#0" expanded="false" />
+            <element signature="e#33013#33014#0" expanded="false" />
+            <element signature="e#33047#33048#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2725,16 +2787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/biz/incoding/silentshot/EVCaptureActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="358" column="0" selection-start-line="358" selection-start-column="0" selection-end-line="358" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CordovaLib/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2747,9 +2799,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73513514">
-          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/biz/incoding/silentshot/EVCaptureActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5226537">
+          <caret line="31" column="59" selection-start-line="31" selection-start-column="59" selection-end-line="31" selection-end-column="59" />
+          <folding>
+            <element signature="e#34369#34416#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
