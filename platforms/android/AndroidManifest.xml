@@ -42,7 +42,7 @@
         <activity
             android:name="EVCaptureActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"></activity>
+            ></activity>
 
     </application>
     <service
