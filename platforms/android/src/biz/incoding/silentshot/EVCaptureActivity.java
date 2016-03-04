@@ -168,7 +168,7 @@ public class EVCaptureActivity extends BaseActivity {
             public void onClick(View v) {
                 removeVideoOverlays();
                 Intent intent = new Intent();
-                intent.putExtra("result",  "Scanning OK.");
+                intent.putExtra("result",  large_notification_text.getText().toString());
                 setResult(RESULT_OK, intent);
                 finish();
             }
