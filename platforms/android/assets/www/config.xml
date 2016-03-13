@@ -88,11 +88,17 @@
 
         Otherwise, you can specify specific domains:
     -->
-    
+
     <feature name="SilentShot">
-        <param name="ios-package" value="SilentShot" />
+        <param name="android-package" value="SilentShot" />
     </feature>
-    
+    <feature name="IrisAccess">
+        <param name="android-package" value="biz.incoding.silentshot.IrisAccess" />
+    </feature>
+    <!--<feature name="EyeVerifyLoader">-->
+        <!--<param name="android-package" value="EyeVerifyLoader" />-->
+    <!--</feature>-->
+
     <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
     <!--
         <access origin="http://phonegap.com" />                    - allow any secure requests to http://phonegap.com/

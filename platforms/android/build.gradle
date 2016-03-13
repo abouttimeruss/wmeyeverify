@@ -8,17 +8,28 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.10.+'
+        classpath 'com.android.tools.build:gradle:2.0.0-beta6'
+        //classpath 'com.android.tools.build:gradle:1.5.0'
     }
 }
 
 ext.multiarch=false
 
+allprojects {
+    repositories {
+        jcenter()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     for (subproject in getProjectList()) {
         compile project(subproject)
     }
+    compile(name: 'EVServiceInterface', ext: 'aar')
+    compile(name: 'EVServiceImplementation', ext: 'aar')
 }
 
 android {
@@ -39,7 +50,7 @@ android {
     }
 
     compileSdkVersion 19
-    buildToolsVersion "19.0.0"
+    buildToolsVersion '23.0.2'
 
     if (multiarch || System.env.BUILD_MULTIPLE_APKS) {
         productFlavors {
