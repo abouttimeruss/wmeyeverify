@@ -50,6 +50,9 @@
 		DCC3BD361C95AD150061F2A0 /* drishti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3BD341C95AD150061F2A0 /* drishti.framework */; };
 		DCC3BD371C95AD150061F2A0 /* EyeVerify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3BD351C95AD150061F2A0 /* EyeVerify.framework */; };
 		DCC3BD3F1C95AEBD0061F2A0 /* EyeVerifyLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC3BD3E1C95AEBD0061F2A0 /* EyeVerifyLoader.m */; };
+		DCC3BD411C9699990061F2A0 /* EVLicense.h in Sources */ = {isa = PBXBuildFile; fileRef = DCC3BD3B1C95AE840061F2A0 /* EVLicense.h */; };
+		DCC3BD421C9699990061F2A0 /* EVSettings.h in Sources */ = {isa = PBXBuildFile; fileRef = DCC3BD3C1C95AE840061F2A0 /* EVSettings.h */; };
+		DCC3BD431C9699990061F2A0 /* EyeVerify.h in Sources */ = {isa = PBXBuildFile; fileRef = DCC3BD3A1C95AE3F0061F2A0 /* EyeVerify.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -477,6 +480,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCC3BD411C9699990061F2A0 /* EVLicense.h in Sources */,
+				DCC3BD421C9699990061F2A0 /* EVSettings.h in Sources */,
+				DCC3BD431C9699990061F2A0 /* EyeVerify.h in Sources */,
 				DCA5ADC1191F7028004EC8B3 /* SilentShot.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
