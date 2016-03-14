@@ -3,7 +3,7 @@
 //  EyeprintID
 //
 
-#import "EyeVerify.h"
+#import <EyeVerify/EyeVerify.h>
 
 #import <Foundation/Foundation.h>
 

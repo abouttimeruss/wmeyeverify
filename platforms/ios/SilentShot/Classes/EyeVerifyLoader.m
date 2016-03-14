@@ -4,7 +4,7 @@
 //
 
 #import "EyeVerifyLoader.h"
-#import "EVLicense.h"
+#import <EyeVerify/EVLicense.h>
 
 #import <dlfcn.h>
 
