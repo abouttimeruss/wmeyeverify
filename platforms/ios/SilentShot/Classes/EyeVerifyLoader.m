@@ -40,8 +40,11 @@ static EVLicense *evLicenser;
     NSString *LibName = @"EyeVerify";
     NSString *LibExtension = @"framework";
     NSString *Path = [[NSBundle mainBundle] pathForResource:LibName ofType:LibExtension];
+    
+    NSString *resP = [[NSBundle mainBundle] resourcePath];
+
     NSLog(@"Loading dynamic library: %@", Path);
-    Path=[Path stringByAppendingString:@"/EyeVerify"];
+    Path=[resP stringByAppendingString:@"/Frameworks/EyeVerify.framework/EyeVerify"];
     
     void *revealLib = NULL;
     revealLib = dlopen([Path cStringUsingEncoding:NSUTF8StringEncoding], RTLD_NOW);

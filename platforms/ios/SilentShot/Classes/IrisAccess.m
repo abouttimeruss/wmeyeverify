@@ -7,7 +7,7 @@
 //
 
 #import "IrisAccess.h"
-#import <Cordova/NSData+Base64.h>
+//#import <Cordova/NSData+Base64.h>
 
 #define CDV_PHOTO_PREFIX @"irisaccess_photo_"
 
