@@ -98,6 +98,9 @@ public class EVCaptureActivity extends BaseActivity {
 
     private EVEnums.EyeStatus currentEyeStatus = EVEnums.EyeStatus.None;
 
+    private int currentResult = RESULT_CANCELED;
+    private String currentResultString = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,6 +127,9 @@ public class EVCaptureActivity extends BaseActivity {
         mIdleRunnable = new Runnable() {
             @Override
             public void run() {
+                Intent intent = new Intent();
+                intent.putExtra("result",  currentResultString);
+                setResult(currentResult, intent);
                 finish();
             }
         };
@@ -144,6 +150,7 @@ public class EVCaptureActivity extends BaseActivity {
                     String msg = "Failed to continue.";
                     Log.e(TAG, msg, ex);
                     Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                    currentResultString = msg;
                 }
             }
         });
@@ -154,8 +161,8 @@ public class EVCaptureActivity extends BaseActivity {
             public void onClick(View v) {
                 removeVideoOverlays();
                 Intent intent = new Intent();
-                intent.putExtra("result",  "Cancel.");
-                setResult(RESULT_CANCELED, intent);
+                intent.putExtra("result",  currentResultString);
+                setResult(currentResult, intent);
 
                 finish();
             }
@@ -168,8 +175,8 @@ public class EVCaptureActivity extends BaseActivity {
             public void onClick(View v) {
                 removeVideoOverlays();
                 Intent intent = new Intent();
-                intent.putExtra("result",  large_notification_text.getText().toString());
-                setResult(RESULT_OK, intent);
+                intent.putExtra("result",  currentResultString);
+                setResult(currentResult, intent);
                 finish();
             }
         });
@@ -200,7 +207,7 @@ public class EVCaptureActivity extends BaseActivity {
         if (isMidSession) {
             Intent intent = new Intent();
             intent.putExtra("result", R.string.capture_closed_incomplete_message);
-            setResult(RESULT_CANCELED, intent);
+            setResult(currentResult, intent);
             finish();
         } else if (!hasLaunched) {
             //must occur after window is available
@@ -220,7 +227,7 @@ public class EVCaptureActivity extends BaseActivity {
         } else {
             Intent intent = new Intent();
             intent.putExtra("result", "Failed to connect.");
-            setResult(RESULT_CANCELED, intent);
+            setResult(currentResult, intent);
             finish();//launched and finished, but maybe a phone call afterwards while sitting on finish screen
 
         }
@@ -242,12 +249,13 @@ public class EVCaptureActivity extends BaseActivity {
 
         } catch (EVServiceException e) {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            currentResultString = e.getMessage();
             e.printStackTrace();
         } catch (EVServiceBusyException e) {
             Toast.makeText(getApplicationContext(), "Cannot continue, currently busy", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
             intent.putExtra("result",  "Cannot continue, currently busy");
-            setResult(RESULT_CANCELED, intent);
+            setResult(currentResult, intent);
             finish();
         }
     }
@@ -406,7 +414,7 @@ public class EVCaptureActivity extends BaseActivity {
         public void onWindowFailure() {
             Intent intent = new Intent();
             intent.putExtra("result",  "Camera unavailable. Please restart the device.");
-            setResult(RESULT_CANCELED, intent);
+            setResult(currentResult, intent);
             finish();
         }
 
@@ -460,6 +468,7 @@ public class EVCaptureActivity extends BaseActivity {
                 case Okay:
                     target_box.setTargetSuccess(true);
                     capture_notification_text.setText(null);
+                    currentResult = RESULT_OK;
                     break;
                 case NoEye:
                     capture_notification_text.setText(getString(R.string.capture_message_align));
@@ -561,6 +570,8 @@ public class EVCaptureActivity extends BaseActivity {
                 //Toast.makeText(getApplicationContext(), completion.isSuccess() ? R.string.main_enrollment_success : R.string.main_enrollment_failure, Toast.LENGTH_LONG).show();
 
                 if (completion.isSuccess()) {
+                    currentResult = RESULT_OK;
+                    currentResultString = EVServiceHelper.data2string(completion.getEncodedPublicKey());
                     Log.d(TAG, "Storing public key: encodedPublicKey=" + EVServiceHelper.data2string(completion.getEncodedPublicKey()));
 
                     SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES, Activity.MODE_PRIVATE);
@@ -593,7 +604,7 @@ public class EVCaptureActivity extends BaseActivity {
 
                         Intent intent = new Intent();
                         intent.putExtra("result",  "LICENSE ERROR");
-                        setResult(RESULT_CANCELED, intent);
+                        setResult(currentResult, intent);
 
 //                        Intent groupIdActivity = new Intent(EVCaptureActivity.this, GroupIdActivity.class);
 //                        groupIdActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -713,6 +724,9 @@ public class EVCaptureActivity extends BaseActivity {
 
 
                 Log.d(TAG, "Finished verifyCompleted: success="+ completion.isSuccess()+"; signatureVerify="+signatureVerify);
+                if(completion.isSuccess()) {
+                    currentResult = RESULT_OK;
+                }
             } catch (Throwable ex) {
                 Log.e(TAG, "Failed to complete verification.", ex);
             }
@@ -728,6 +742,7 @@ public class EVCaptureActivity extends BaseActivity {
         large_notification_text.setVisibility(View.VISIBLE);
         sub_notification_text.setVisibility(View.VISIBLE);
 
+        currentResult = RESULT_CANCELED;
         switch (theError) {
             case NOT_ENROLLED:
                 large_notification_text.setText(getString(R.string.capture_error_not_enrolled));
@@ -796,6 +811,7 @@ public class EVCaptureActivity extends BaseActivity {
                 break;
         }
 
+        currentResultString = large_notification_text.getText().toString();
         changeMessageState(message_state);
     }
 

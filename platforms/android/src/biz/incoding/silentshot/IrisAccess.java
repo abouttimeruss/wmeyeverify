@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,7 +14,7 @@ import org.json.JSONObject;
  */
 public class IrisAccess  extends CordovaPlugin {
     public CallbackContext callbackContext;
-    private int scanType;
+    private static int scanType;
     private String userNameFromOptions;
     private String userKeyFromOptions;
 
@@ -25,25 +26,6 @@ public class IrisAccess  extends CordovaPlugin {
         this.callbackContext = callbackContext;
 
         if (action.equalsIgnoreCase("GetIris")) {
-
-
-//            -(void)setDefaults {
-//                evLoader = [[EyeVerifyLoader alloc] init];
-//                [evLoader loadEyeVerifyWithLicense:@"1DBRJYSHENYXWOK0"];
-//
-//                EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
-//                ev.userName = userNameFromOptions;
-//
-//                [ev setCaptureView:[[UIView alloc] initWithFrame:CGRectMake(0, 100, 320, 100)]];
-//
-//
-//            }
-
-
-
-
-
-//            mServiceClient = new EVServiceClient(mListener, new EVServiceProperties("1DBRJYSHENYXWOK0"));
 
             if(args.length() > 0)
             {
@@ -98,13 +80,26 @@ public class IrisAccess  extends CordovaPlugin {
             case 100: //integer matching the integer suplied when starting the activity
                 if(intent != null ){
                     if (resultCode == android.app.Activity.RESULT_OK) {
-                        //in case of success return the string to javascript
+                        //in case of success return the string to javascript\
                         String result = intent.getStringExtra("result");
-                        this.callbackContext.success(result);
+                        if(scanType == 0) {
+                            this.callbackContext.success(result);
+                        }else{
+                            String str = "[{\"verified\":\"true\",\"userKey\":\"" + result + "\"}]";
+                            try {
+                                JSONArray jsonarray = new JSONArray(str);
+                                PluginResult r = new PluginResult(PluginResult.Status.OK,jsonarray);
+                                r.setKeepCallback(true);
+                                callbackContext.sendPluginResult(r);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     } else {
-                        //code launched in case of error
                         String message = intent.getStringExtra("result");
-                        this.callbackContext.error(message);
+                        PluginResult r = new PluginResult(PluginResult.Status.INVALID_ACTION,message);
+                        r.setKeepCallback(true);
+                        callbackContext.sendPluginResult(r);
                     }
                 }
                 break;
