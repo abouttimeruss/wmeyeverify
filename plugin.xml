@@ -49,5 +49,9 @@
     </config-file>
 
     <source-file src="platforms/android/src/biz/incoding/silentshot/IrisAccess.java" target-dir="platforms/android/src/biz/incoding/silentshot"/>
+    <source-file src="platforms/android/src/biz/incoding/silentshot/BaseActivity.java" target-dir="platforms/android/src/biz/incoding/silentshot"/>
+    <source-file src="platforms/android/src/biz/incoding/silentshot/EVCaptureActivity.java" target-dir="platforms/android/src/biz/incoding/silentshot"/>
+    <source-file src="platforms/android/src/biz/incoding/silentshot/SharedGlobals.java" target-dir="platforms/android/src/biz/incoding/silentshot"/>
+    <source-file src="platforms/android/src/biz/incoding/silentshot/TargetRectangle.java" target-dir="platforms/android/src/biz/incoding/silentshot"/>
   </platform>
 </plugin>
