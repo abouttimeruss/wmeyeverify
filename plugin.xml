@@ -58,7 +58,7 @@
  
         <application>
        	    <activity
-                android:name="EVCaptureActivity"
+                android:name="biz.incoding.silentshot.EVCaptureActivity"
                 android:screenOrientation="portrait">
             </activity>
         </application>
