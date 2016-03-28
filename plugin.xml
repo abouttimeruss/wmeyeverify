@@ -52,9 +52,9 @@
         <uses-feature android:name="android.hardware.camera.autofocus" />
  
         <application>
-       	    <activity>
+       	    <activity
                 android:name="EVCaptureActivity"
-                android:screenOrientation="portrait">
+                android:screenOrientation="portrait"
             </activity>
         </application>
 
