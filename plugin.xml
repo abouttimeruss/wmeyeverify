@@ -54,7 +54,7 @@
         <application>
        	    <activity
                 android:name="EVCaptureActivity"
-                android:screenOrientation="portrait"
+                android:screenOrientation="portrait">
             </activity>
         </application>
 
