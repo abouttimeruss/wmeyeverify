@@ -44,14 +44,15 @@
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="IrisAccess">
-        <param name="android-package" value="biz.incoding.silentshot.IrisAccess"/>
+        <param name="android-package" value="biz.incoding.silentshot"/>
       </feature>
     </config-file>
-
-    <source-file src="platforms/android/src/biz/incoding/silentshot/IrisAccess.java" target-dir="platforms/android/src/biz/incoding/silentshot"/>
-    <source-file src="platforms/android/src/biz/incoding/silentshot/BaseActivity.java" target-dir="platforms/android/src/biz/incoding/silentshot"/>
-    <source-file src="platforms/android/src/biz/incoding/silentshot/EVCaptureActivity.java" target-dir="platforms/android/src/biz/incoding/silentshot"/>
-    <source-file src="platforms/android/src/biz/incoding/silentshot/SharedGlobals.java" target-dir="platforms/android/src/biz/incoding/silentshot"/>
-    <source-file src="platforms/android/src/biz/incoding/silentshot/TargetRectangle.java" target-dir="platforms/android/src/biz/incoding/silentshot"/>
+    <source-file src="platforms/android/libs/EVServiceImplementation.aar" target-dir="libs" />
+    <source-file src="platforms/android/libs/EVServiceInterface.aar" target-dir="libs" />
+    <source-file src="platforms/android/src/biz/incoding/silentshot/IrisAccess.java" target-dir="src/biz/incoding/silentshot"/>
+    <source-file src="platforms/android/src/biz/incoding/silentshot/BaseActivity.java" target-dir="src/biz/incoding/silentshot"/>
+    <source-file src="platforms/android/src/biz/incoding/silentshot/EVCaptureActivity.java" target-dir="src/biz/incoding/silentshot"/>
+    <source-file src="platforms/android/src/biz/incoding/silentshot/SharedGlobals.java" target-dir="src/biz/incoding/silentshot"/>
+    <source-file src="platforms/android/src/biz/incoding/silentshot/TargetRectangle.java" target-dir="src/biz/incoding/silentshot"/>
   </platform>
 </plugin>
