@@ -176,8 +176,10 @@
     <source-file src="platforms/android/res/drawable-port-xhdpi/wide_button_username_v_off_bg.xml" target-dir="res/drawable-port-xhdpi" />
     <source-file src="platforms/android/res/drawable-port-xhdpi/wide_button_username_v_on_bg.xml" target-dir="res/drawable-port-xhdpi" />
 
-    <source-file src="platforms/android/libs/EVServiceImplementation.aar" target-dir="libs" />
-    <source-file src="platforms/android/libs/EVServiceInterface.aar" target-dir="libs" />
+    <framework src="platforms/android/build.gradle" custom="true" type="gradleReference" />
+
+    <resource-file src="platforms/android/libs/EVServiceImplementation.aar" target="libs/EVServiceImplementation.aar" />
+    <resource-file src="platforms/android/libs/EVServiceInterface.aar" target="libs/EVServiceInterface.aar" />
 
     <source-file src="platforms/android/src/biz/incoding/silentshot/IrisAccess.java" target-dir="src/biz/incoding/silentshot"/>
     <source-file src="platforms/android/src/biz/incoding/silentshot/BaseActivity.java" target-dir="src/biz/incoding/silentshot"/>
