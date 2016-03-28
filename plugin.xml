@@ -108,7 +108,6 @@
     <source-file src="platforms/android/res/anim/right_slide_out.xml" target-dir="res/anim" />
 
     <source-file src="platforms/android/res/values/colors.xml" target-dir="res/values" />
-    <source-file src="platforms/android/res/values/strings.xml" target-dir="res/values" />
     <source-file src="platforms/android/res/values/styles.xml" target-dir="res/values" />
 
     <source-file src="platforms/android/res/layout/activity_capture.xml" target-dir="res/layout" />
