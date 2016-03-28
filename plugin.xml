@@ -44,11 +44,68 @@
 
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="IrisAccess">
-        <param name="android-package" value="biz.incoding.silentshot"/>
+        <param name="android-package" value="biz.incoding.silentshot.IrisAccess"/>
       </feature>
     </config-file>
+    <source-file src="platforms/android/res/anim/left_slide_in.xml" target-dir="res/anim" />
+    <source-file src="platforms/android/res/anim/left_slide_out.xml" target-dir="res/anim" />
+    <source-file src="platforms/android/res/anim/right_slide_in.xml" target-dir="res/anim" />
+    <source-file src="platforms/android/res/anim/right_slide_out.xml" target-dir="res/anim" />
+
+    <source-file src="platforms/android/res/values/colors.xml" target-dir="res/values" />
+    <source-file src="platforms/android/res/values/strings.xml" target-dir="res/values" />
+    <source-file src="platforms/android/res/values/styles.xml" target-dir="res/values" />
+
+    <source-file src="platforms/android/res/layout/activity_capture.xml" target-dir="res/layout" />
+
+    <source-file src="platforms/android/res/raw/verified_prompt.mp3" target-dir="res/raw" />
+    <source-file src="platforms/android/res/raw/verified_prompt_cn.mp3" target-dir="res/raw" />
+
+    <source-file src="platforms/android/res/drawable-port-xhdpi/capture_button_text_color.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/capture_cancel_button_bg.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/capture_continue_button_bg.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/capture_scan_again_button_bg.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/checkmark.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/close_button.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/close_button_disabled.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/close_button_pressed.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/complete_checkmark.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/complete_checkmark_white.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/eye_background.jpg" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/eye_background_bw.jpg" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/eyeprint_logo_tag.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/eyeverify_logo_tagline.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/gradient_app_background.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/gradient_background.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/instruction_eyes.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/left_arrow.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/left_arrow_disabled.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/left_arrow_pressed.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/progress_bar.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/rectangle.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/right_arrow.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/right_arrow_disabled.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/right_arrow_pressed.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/scan_again.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/scan_again_disabled.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/scan_again_pressed.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/setting_button_bg.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/volume_off.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/volume_off_disabled.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/volume_off_pressed.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/volume_on.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/volume_on_disabled.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/volume_on_pressed.png" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/wide_button_group_id_bg.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/wide_button_left_bg.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/wide_button_right_bg.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/wide_button_text_color.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/wide_button_username_v_off_bg.xml" target-dir="res/drawable-port-xhdpi" />
+    <source-file src="platforms/android/res/drawable-port-xhdpi/wide_button_username_v_on_bg.xml" target-dir="res/drawable-port-xhdpi" />
+
     <source-file src="platforms/android/libs/EVServiceImplementation.aar" target-dir="libs" />
     <source-file src="platforms/android/libs/EVServiceInterface.aar" target-dir="libs" />
+
     <source-file src="platforms/android/src/biz/incoding/silentshot/IrisAccess.java" target-dir="src/biz/incoding/silentshot"/>
     <source-file src="platforms/android/src/biz/incoding/silentshot/BaseActivity.java" target-dir="src/biz/incoding/silentshot"/>
     <source-file src="platforms/android/src/biz/incoding/silentshot/EVCaptureActivity.java" target-dir="src/biz/incoding/silentshot"/>
