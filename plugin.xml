@@ -99,6 +99,19 @@
     <string name="group_id" translatable="false">Group Id</string>
 
     <string name="capture_closed_incomplete_message">Incomplete process, you will have to retry.</string>
+    
+    <config-file target="AndroidManifest.xml" parent="/*">
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+        <uses-feature android:name="android.hardware.camera" />
+        <uses-feature android:name="android.hardware.camera.autofocus" />
+                <activity
+            android:name="EVCaptureActivity"
+            android:screenOrientation="portrait"/>
+    </config-file>
 
     </config-file>
 
