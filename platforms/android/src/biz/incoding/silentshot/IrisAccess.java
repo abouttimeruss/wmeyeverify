@@ -50,7 +50,7 @@ public class IrisAccess  extends CordovaPlugin {
                 userKeyFromOptions = "1234fhshfsf678906867";
             }
 
-            Intent intent = new Intent(this.cordova.getActivity(), EVCaptureActivity.class);
+            Intent intent = new Intent(this.cordova.getActivity(), biz.incoding.silentshot.EVCaptureActivity.class);
 
             intent.putExtra(EVCaptureActivity.IS_ENROLLMENT_KEY, scanType == 0 ? true:false);
             intent.putExtra(EVCaptureActivity.USER_ID_KEY, userNameFromOptions);

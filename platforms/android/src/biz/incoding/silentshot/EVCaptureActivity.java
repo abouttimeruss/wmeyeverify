@@ -42,6 +42,8 @@ import java.security.Signature;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Map;
 
+import biz.incoding.silentshot.R;
+
 public class EVCaptureActivity extends BaseActivity {
 
     public static final String TAG = EVCaptureActivity.class.getSimpleName();
@@ -100,6 +102,8 @@ public class EVCaptureActivity extends BaseActivity {
 
     private int currentResult = RESULT_CANCELED;
     private String currentResultString = "";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
