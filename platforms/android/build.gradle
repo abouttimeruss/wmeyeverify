@@ -81,9 +81,6 @@ android {
 
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.12'
-}
 
 def getVersionCodeFromManifest() {
     def manifestFile = file(android.sourceSets.main.manifest.srcFile)
