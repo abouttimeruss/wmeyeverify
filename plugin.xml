@@ -42,13 +42,29 @@
     </platform>
  <platform name="android">
 
+    <config-file target="AndroidManifest.xml" parent="/*">
+        <uses-permission android:name="android.permission.INTERNET" />
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+        <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+        <uses-feature android:name="android.hardware.camera" />
+        <uses-feature android:name="android.hardware.camera.autofocus" />
+        
+	<activity
+            android:name="EVCaptureActivity"
+            android:screenOrientation="portrait"/>
+
+    </config-file>
+
+
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="IrisAccess">
         <param name="android-package" value="biz.incoding.silentshot.IrisAccess"/>
       </feature>
     </config-file>
 
-    <config-file target="res/values/strings.xml" parent="/resources">
+<config-file target="res/values/strings.xml" parent="/resources">
 
     <string name="capture_enrollment_new_session">Good job.</string>
     <string name="capture_enrollment_new_session_almost_done">Almost done.</string>
@@ -100,20 +116,7 @@
 
     <string name="capture_closed_incomplete_message">Incomplete process, you will have to retry.</string>
     
-    <config-file target="AndroidManifest.xml" parent="/*">
-        <uses-permission android:name="android.permission.INTERNET" />
-        <uses-permission android:name="android.permission.CAMERA" />
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-        <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-        <uses-feature android:name="android.hardware.camera" />
-        <uses-feature android:name="android.hardware.camera.autofocus" />
-                <activity
-            android:name="EVCaptureActivity"
-            android:screenOrientation="portrait"/>
-    </config-file>
-
-    </config-file>
+</config-file>
 
     <source-file src="platforms/android/res/anim/left_slide_in.xml" target-dir="res/anim" />
     <source-file src="platforms/android/res/anim/left_slide_out.xml" target-dir="res/anim" />
