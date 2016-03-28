@@ -50,10 +50,13 @@
 
         <uses-feature android:name="android.hardware.camera" />
         <uses-feature android:name="android.hardware.camera.autofocus" />
-        
-	<activity
-            android:name="EVCaptureActivity"
-            android:screenOrientation="portrait"/>
+ 
+        <application>
+       	    <activity>
+                android:name="EVCaptureActivity"
+                android:screenOrientation="portrait">
+            </activity>
+        </application>
 
     </config-file>
 
