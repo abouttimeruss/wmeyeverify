@@ -41,6 +41,11 @@
 
     </platform>
  <platform name="android">
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="IrisAccess">
+        <param name="android-package" value="biz.incoding.silentshot.IrisAccess"/>
+      </feature>
+    </config-file>
 
     <config-file target="AndroidManifest.xml" parent="/*">
         <uses-permission android:name="android.permission.INTERNET" />
@@ -61,11 +66,6 @@
     </config-file>
 
 
-    <config-file target="res/xml/config.xml" parent="/*">
-      <feature name="IrisAccess">
-        <param name="android-package" value="biz.incoding.silentshot.IrisAccess"/>
-      </feature>
-    </config-file>
 
 <config-file target="res/values/strings.xml" parent="/resources">
 
