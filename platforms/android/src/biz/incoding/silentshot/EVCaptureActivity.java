@@ -42,8 +42,6 @@ import java.security.Signature;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Map;
 
-import biz.incoding.silentshot.R;
-
 public class EVCaptureActivity extends BaseActivity {
 
     public static final String TAG = EVCaptureActivity.class.getSimpleName();
@@ -111,8 +109,7 @@ public class EVCaptureActivity extends BaseActivity {
 
 
         setContentView(R.layout.activity_capture);
-
-        service_window = (ViewGroup) findViewById(R.id.capture_window);
+        service_window = (ViewGroup) findViewById(getResources().getIdentifier("capture_window", "id", getPackageName()));
         mServiceClient = new EVServiceClient(mListener, new EVServiceProperties("1DBRJYSHENYXWOK0"));
         //mServiceClient = new EVServiceClient(mListener, new EVServiceProperties(BaseActivity.readLicenseCertificate()));
 
@@ -138,11 +135,11 @@ public class EVCaptureActivity extends BaseActivity {
             }
         };
 
-        enroll_progress = (ProgressBar) findViewById(R.id.capture_enroll_progress);
+        enroll_progress = (ProgressBar) findViewById(getResources().getIdentifier("capture_enroll_progress", "id", getPackageName()));
 
-        capture_complete_checkmark =  (ImageView) findViewById(R.id.capture_complete_checkmark);
+        capture_complete_checkmark =  (ImageView) findViewById(getResources().getIdentifier("capture_complete_checkmark", "id", getPackageName()));
 
-        scan_again_button = (Button) findViewById(R.id.capture_scan_again_button);
+        scan_again_button = (Button) findViewById(getResources().getIdentifier("capture_scan_again_button", "id", getPackageName()));
         scan_again_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,7 +156,7 @@ public class EVCaptureActivity extends BaseActivity {
             }
         });
 
-        cancel_button = (Button) findViewById(R.id.capture_cancel_button);
+        cancel_button = (Button) findViewById(getResources().getIdentifier("capture_cancel_button", "id", getPackageName()));
         cancel_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -173,7 +170,7 @@ public class EVCaptureActivity extends BaseActivity {
         });
         cancel_button.setEnabled(false);
 
-        continue_button = (Button) findViewById(R.id.capture_continue_button);
+        continue_button = (Button) findViewById(getResources().getIdentifier("capture_continue_button", "id", getPackageName()));
         continue_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,14 +182,14 @@ public class EVCaptureActivity extends BaseActivity {
             }
         });
 
-        service_overlay = (ViewGroup) findViewById(R.id.capture_overlay);
+        service_overlay = (ViewGroup) findViewById(getResources().getIdentifier("capture_overlay", "id", getPackageName()));
 
-        target_box = (TargetRectangle) findViewById(R.id.capture_target_box);
-        counter_text = (TextView) findViewById(R.id.capture_counter_text);
+        target_box = (TargetRectangle) findViewById(getResources().getIdentifier("capture_target_box", "id", getPackageName()));
+        counter_text = (TextView) findViewById(getResources().getIdentifier("capture_counter_text", "id", getPackageName()));
 
-        capture_notification_text = (TextView) findViewById(R.id.capture_notification_text);
-        large_notification_text = (TextView) findViewById(R.id.capture_large_notification_text);
-        sub_notification_text = (TextView) findViewById(R.id.capture_sub_notification_text);
+        capture_notification_text = (TextView) findViewById(getResources().getIdentifier("capture_notification_text", "id", getPackageName()));
+        large_notification_text = (TextView) findViewById(getResources().getIdentifier("capture_large_notification_text", "id", getPackageName()));
+        sub_notification_text = (TextView) findViewById(getResources().getIdentifier("capture_sub_notification_text", "id", getPackageName()));
 
 //        leftEyeBox =  findViewById(R.id.left_eye_box);
 //        rightEyeBox =  findViewById(R.id.right_eye_box);
