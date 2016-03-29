@@ -23,7 +23,8 @@ public abstract class BaseActivity extends Activity {
 //        * the outgoing activity.  Use 0 for no animation.
 
         if (hasPushedActivity) {
-            this.overridePendingTransition(R.anim.left_slide_out, R.anim.left_slide_in);
+            this.overridePendingTransition(getResources().getIdentifier("left_slide_out","anim",getPackageName()),
+                    getResources().getIdentifier("left_slide_in","anim",getPackageName()));
         }
         hasPushedActivity = false;
     }
@@ -45,7 +46,8 @@ public abstract class BaseActivity extends Activity {
         hasPushedActivity = true;
         startActivityForResult(intent,0);
 
-        overridePendingTransition(R.anim.right_slide_in, R.anim.right_slide_out);
+        overridePendingTransition(getResources().getIdentifier("right_slide_in","anim",getPackageName()),
+                getResources().getIdentifier("right_slide_out","anim",getPackageName()));
     }
     @Override
     protected void onCreate(Bundle savedInstance) {
