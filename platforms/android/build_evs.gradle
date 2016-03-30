@@ -1,0 +1,19 @@
+allprojects {
+    repositories {
+        jcenter()
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+    // SUB-PROJECT DEPENDENCIES START
+    debugCompile project(path: "CordovaLib", configuration: "debug")
+    releaseCompile project(path: "CordovaLib", configuration: "release")
+    // SUB-PROJECT DEPENDENCIES END
+    compile(name: 'EVServiceInterface', ext: 'aar')
+    compile(name: 'EVServiceImplementation', ext: 'aar')
+
+}
