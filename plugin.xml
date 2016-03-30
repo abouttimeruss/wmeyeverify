@@ -79,7 +79,7 @@
     <string name="capture_suggestion_not_supported">This model has been added to our device compatibility queue. Please check back again soon.</string>
     <string name="capture_error_not_enrolled">Please keep still while scanning</string>
     <string name="capture_suggestion_wipe_camera">Try wiping the camera lens to remove any smudges</string>
-    <string name="capture_error_distance">We don’t have the distance right</string>
+    <string name="capture_error_distance">We donï¿½t have the distance right</string>
     <string name="capture_suggestion_distance">Move the device closer so your eyes fill the screen</string>
     <string name="capture_error_system">System error</string>
     <string name="capture_suggestion_system">If the problem persists, report the error to the technical support</string>
@@ -176,7 +176,7 @@
     <resource-file src="platforms/android/res/drawable-port-xhdpi/wide_button_username_v_off_bg.xml" target="res/drawable-port-xhdpi/wide_button_username_v_off_bg.xml" />
     <resource-file src="platforms/android/res/drawable-port-xhdpi/wide_button_username_v_on_bg.xml" target="res/drawable-port-xhdpi/wide_button_username_v_on_bg.xml" />
 
-    <framework src="platforms/android/build.gradle" custom="true" type="gradleReference" />
+    <!--<framework src="platforms/android/build.gradle" custom="true" type="gradleReference" />-->
 
     <resource-file src="platforms/android/libs/EVServiceImplementation.aar" target="libs/EVServiceImplementation.aar" />
     <resource-file src="platforms/android/libs/EVServiceInterface.aar" target="libs/EVServiceInterface.aar" />
