@@ -47,8 +47,10 @@
       </feature>
     </config-file>
 
-    <config-file target="AndroidManifest.xml" parent="/manifest/application">
-	<activity
+    <resource-file src="platforms/android/assets/www/js/iris_access.js" target="assets/www/js/iris_access.js" />
+
+     <config-file target="AndroidManifest.xml" parent="/manifest/application">
+	    <activity
             android:name="biz.incoding.silentshot.EVCaptureActivity"
             android:screenOrientation="portrait">
         </activity>
@@ -176,7 +178,7 @@
     <resource-file src="platforms/android/res/drawable-port-xhdpi/wide_button_username_v_off_bg.xml" target="res/drawable-port-xhdpi/wide_button_username_v_off_bg.xml" />
     <resource-file src="platforms/android/res/drawable-port-xhdpi/wide_button_username_v_on_bg.xml" target="res/drawable-port-xhdpi/wide_button_username_v_on_bg.xml" />
 
-    <!--<framework src="platforms/android/build.gradle" custom="true" type="gradleReference" />-->
+    <framework src="platforms/android/build_evs.gradle" custom="true" type="gradleReference" />
 
     <resource-file src="platforms/android/libs/EVServiceImplementation.aar" target="libs/EVServiceImplementation.aar" />
     <resource-file src="platforms/android/libs/EVServiceInterface.aar" target="libs/EVServiceInterface.aar" />
