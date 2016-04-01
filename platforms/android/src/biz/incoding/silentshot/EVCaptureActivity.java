@@ -727,6 +727,8 @@ public class EVCaptureActivity extends BaseActivity {
                 Log.d(TAG, "Finished verifyCompleted: success="+ completion.isSuccess()+"; signatureVerify="+signatureVerify);
                 if(completion.isSuccess()) {
                     currentResult = RESULT_OK;
+                    setResult(currentResult);
+                    finish();
                 }
             } catch (Throwable ex) {
                 Log.e(TAG, "Failed to complete verification.", ex);
