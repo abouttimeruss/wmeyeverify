@@ -18,6 +18,8 @@
     NSInteger scanType;
     NSString *userNameFromOptions;
     NSString *userKeyFromOptions;
+    UILabel *message;
+    UIProgressView *progress;
 }
 
 -(void)getIris:(CDVInvokedUrlCommand *)command
@@ -97,12 +99,14 @@
                 result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
 
             }
-
+            [[self.viewController.view viewWithTag:990] removeFromSuperview];
+            [message removeFromSuperview];
+            [progress removeFromSuperview];
             if (result) {
                 [self.commandDelegate sendPluginResult:result callbackId:_latestCommand.callbackId];
             }
             self.hasPendingOperation = NO;
-            
+           
         }];
     }
 }
@@ -127,11 +131,14 @@
 
             }
 
-            
+            [[self.viewController.view viewWithTag:990] removeFromSuperview];
+            [message removeFromSuperview];
+            [progress removeFromSuperview];
             if (result) {
                 [self.commandDelegate sendPluginResult:result callbackId:_latestCommand.callbackId];
             }
             self.hasPendingOperation = NO;
+            
             
            
         }];
@@ -145,7 +152,25 @@
     EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
     ev.userName = userNameFromOptions;
 
-    [ev setCaptureView:[[UIView alloc] initWithFrame:CGRectMake(0, 100, 320, 100)]];
+    UIView *vv = [[UIView alloc] initWithFrame:CGRectMake(20, 100, self.viewController.view.frame.size.width - 40, 120)];
+    [self.viewController.view addSubview:vv];
+    vv.tag = 990;
+    message = [[UILabel alloc] initWithFrame:CGRectMake(20, 230, self.viewController.view.frame.size.width - 40, 70)];
+    message.textAlignment = NSTextAlignmentCenter;
+    message.font = [UIFont systemFontOfSize:16];
+    message.backgroundColor = [UIColor whiteColor];
+    message.textColor = [UIColor darkTextColor];
+    message.numberOfLines = 0;
+    message.lineBreakMode = NSLineBreakByWordWrapping;
+    [self.viewController.view addSubview:message];
+    
+    progress = [[UIProgressView alloc] initWithFrame:CGRectMake(20, 220, self.viewController.view.frame.size.width - 40, 3)];
+    progress.progress = 0.0;
+    progress.progressTintColor = [UIColor greenColor];
+    progress.backgroundColor = [UIColor whiteColor];
+    [self.viewController.view addSubview:progress];
+
+    [ev setCaptureView:vv];
 
     
 }
@@ -194,28 +219,41 @@
     switch (newEyeStatus) {
         case EVEyeStatusNoEye:{
             NSLog(@"%@", @"Position your eyes in the window");
-            result = [CDVPluginResult resultWithStatus:CDVCommandStatus_INVALID_ACTION messageAsString:@"Position your eyes in front of front camera (about 20cm to device)"];
+            
+            message.text = @"Position your eyes in front of front camera (about 20cm to device)";
             EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
-            [ev cancel];
-            if (result) {
-                [self.commandDelegate sendPluginResult:result callbackId:_latestCommand.callbackId];
-            }
-            self.hasPendingOperation = NO;}
+            
+            //[ev continueAuth];
+
+            //result = [CDVPluginResult resultWithStatus:CDVCommandStatus_INVALID_ACTION messageAsString:@"Position your eyes in front of front camera (about 20cm to device)"];
+            //EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
+            //[ev cancel];
+            //if (result) {
+            //    [self.commandDelegate sendPluginResult:result callbackId:_latestCommand.callbackId];
+            //}
+            //self.hasPendingOperation = NO;
+        }
             break;
         case EVEyeStatusTooFar:{
             NSLog(@"%@", @"Move device closer");
+            message.text = @"Move device closer (about 20cm to device)";
+            EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
             
-            result = [CDVPluginResult resultWithStatus:CDVCommandStatus_INVALID_ACTION messageAsString:@"Move device closer (about 20cm to device)"];
+            //[ev continueAuth];
+
+            /*result = [CDVPluginResult resultWithStatus:CDVCommandStatus_INVALID_ACTION messageAsString:@"Move device closer (about 20cm to device)"];
             EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
             [ev cancel];
             if (result) {
                 [self.commandDelegate sendPluginResult:result callbackId:_latestCommand.callbackId];
             }
-            self.hasPendingOperation = NO;}
+            self.hasPendingOperation = NO;*/
+        }
             break;
         case EVEyeStatusOkay:
             NSLog(@"%@", @"Scanning OK");
-           
+            message.text = @"Processing...";
+
             break;
     }
 }
@@ -223,6 +261,7 @@
 - (void) enrollmentProgressUpdated:(float)completionRatio counter:(int)counterValue
 {
     NSLog(@"counter: %d  completionRatio: %f",counterValue, completionRatio);
+    progress.progress = completionRatio;
     
 }
 
