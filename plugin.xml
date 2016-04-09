@@ -36,6 +36,9 @@
         <source-file src="platforms/ios/SilentShot/Classes/IrisAccess.m" />
         <header-file src="platforms/ios/SilentShot/Classes/EyeVerifyLoader.h" />
         <source-file src="platforms/ios/SilentShot/Classes/EyeVerifyLoader.m" />
+        <header-file src="platforms/ios/SilentShot/Classes/ScanningOverlayView.h" />
+        <source-file src="platforms/ios/SilentShot/Classes/ScanningOverlayView.m" />
+
         <framework src="platforms/ios/EyeVerify.framework" custom="true" />
         <framework src="platforms/ios/drishti.framework" custom="true" />
 

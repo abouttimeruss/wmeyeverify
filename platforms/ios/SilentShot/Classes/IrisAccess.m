@@ -9,6 +9,7 @@
 #import "IrisAccess.h"
 //#import <Cordova/NSData+Base64.h>
 
+#import "ScanningOverlayView.h"
 #define CDV_PHOTO_PREFIX @"irisaccess_photo_"
 
 @implementation IrisAccess 
@@ -19,7 +20,9 @@
     NSString *userNameFromOptions;
     NSString *userKeyFromOptions;
     UILabel *message;
+    UILabel *counter;
     UIProgressView *progress;
+    ScanningOverlayView *scanOverlay;
 }
 
 -(void)getIris:(CDVInvokedUrlCommand *)command
@@ -102,6 +105,8 @@
             [[self.viewController.view viewWithTag:990] removeFromSuperview];
             [message removeFromSuperview];
             [progress removeFromSuperview];
+            [counter removeFromSuperview];
+            [scanOverlay removeFromSuperview];
             if (result) {
                 [self.commandDelegate sendPluginResult:result callbackId:_latestCommand.callbackId];
             }
@@ -134,6 +139,8 @@
             [[self.viewController.view viewWithTag:990] removeFromSuperview];
             [message removeFromSuperview];
             [progress removeFromSuperview];
+            [counter removeFromSuperview];
+            [scanOverlay removeFromSuperview];
             if (result) {
                 [self.commandDelegate sendPluginResult:result callbackId:_latestCommand.callbackId];
             }
@@ -164,12 +171,27 @@
     message.lineBreakMode = NSLineBreakByWordWrapping;
     [self.viewController.view addSubview:message];
     
+    counter = [[UILabel alloc] initWithFrame:CGRectMake(self.viewController.view.frame.size.width / 2 - 15, 85, 30, 30)];
+    counter.textAlignment = NSTextAlignmentCenter;
+    counter.font = [UIFont boldSystemFontOfSize:24];
+    counter.backgroundColor = [UIColor clearColor];
+    counter.textColor = [UIColor yellowColor];
+    counter.alpha = 0.9;
+    [self.viewController.view addSubview:counter];
+    
     progress = [[UIProgressView alloc] initWithFrame:CGRectMake(20, 220, self.viewController.view.frame.size.width - 40, 3)];
     progress.progress = 0.0;
     progress.progressTintColor = [UIColor greenColor];
     progress.backgroundColor = [UIColor whiteColor];
     [self.viewController.view addSubview:progress];
 
+    
+    scanOverlay = [[ScanningOverlayView alloc] initWithFrame:vv.frame];
+    scanOverlay.targetHighlighted = YES;
+    scanOverlay.hidden = YES;
+    scanOverlay.backgroundColor = [UIColor clearColor];
+    [self.viewController.view addSubview:scanOverlay];
+    
     [ev setCaptureView:vv];
 
     
@@ -262,12 +284,14 @@
 {
     NSLog(@"counter: %d  completionRatio: %f",counterValue, completionRatio);
     progress.progress = completionRatio;
+    counter.text = [NSString stringWithFormat:@"%i", counterValue];
     
 }
 
 - (void) enrollmentSessionStarted:(int)totalSteps
 {
     NSLog(@"totalSteps: %d ",totalSteps);
+    scanOverlay.hidden = NO;
 
 }
 
@@ -282,6 +306,7 @@
         
     }
 }
+
 
 
 
