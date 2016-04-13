@@ -251,6 +251,10 @@ public class EVCaptureActivity extends BaseActivity {
         } catch (EVServiceException e) {
             Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             currentResultString = e.getMessage();
+            Intent intent = new Intent();
+            intent.putExtra("result",  currentResultString);
+            setResult(currentResult, intent);
+            finish();
             e.printStackTrace();
         } catch (EVServiceBusyException e) {
             Toast.makeText(getApplicationContext(), "Cannot continue, currently busy", Toast.LENGTH_SHORT).show();
@@ -585,19 +589,25 @@ public class EVCaptureActivity extends BaseActivity {
                     editor.apply();
 
                     capture_complete_checkmark.setVisibility(View.VISIBLE);
-                }
 
-                if (completion.isSuccess()) {
-                    capture_notification_text.setText(getString(getResources().getIdentifier("enroll_completed_message","string",getPackageName())));
-                    sub_notification_text.setText(getString(getResources().getIdentifier("enroll_done_message","string",getPackageName())));
+                    capture_notification_text.setText(getString(getResources().getIdentifier("enroll_completed_message", "string", getPackageName())));
+                    sub_notification_text.setText(getString(getResources().getIdentifier("enroll_done_message", "string", getPackageName())));
                     large_notification_text.setVisibility(View.GONE);
                     sub_notification_text.setVisibility(View.GONE);
-                    return;
+                    Intent intent = new Intent();
+                    intent.putExtra("result", currentResultString);
+                    setResult(currentResult, intent);
+                    finish();
                 }
                 else if (completion.isIncomplete()) {
                     capture_notification_text.setText(getString(getResources().getIdentifier("enroll_incomplete_message","string",getPackageName())));
                     sub_notification_text.setText(getString(getResources().getIdentifier("enroll_retry_message","string",getPackageName())));
-                    return;
+                    currentResultString = getString(getResources().getIdentifier("enroll_incomplete_message","string",getPackageName()));
+                    currentResult = RESULT_CANCELED;
+                    Intent intent = new Intent();
+                    intent.putExtra("result",  currentResultString);
+                    setResult(currentResult, intent);
+                    finish();
                 }
                 else if (completion.wasAborted()) {
                     if (SharedGlobals.isLicensingError(completion.getAbortResult())) {
@@ -699,6 +709,12 @@ public class EVCaptureActivity extends BaseActivity {
                 }
                 else if (completion.wasAborted()) {
                     showAbortMessages(completion.getAbortResult());
+                    currentResult = RESULT_CANCELED;
+                    Intent intent = new Intent();
+                    intent.putExtra("result",  completion.getAbortResult());
+                    setResult(currentResult, intent);
+                    finish();
+
                     return;
                 }
                 else {
@@ -741,7 +757,7 @@ public class EVCaptureActivity extends BaseActivity {
         MESSAGE_STATE message_state = MESSAGE_STATE.ERROR;
 
         if (large_notification_text == null) return;
-        large_notification_text.setTextColor(getResources().getColor(getResources().getIdentifier("ev_heading_text_error","color",getPackageName())));
+        large_notification_text.setTextColor(getResources().getColor(getResources().getIdentifier("ev_heading_text_error", "color", getPackageName())));
         large_notification_text.setVisibility(View.VISIBLE);
         sub_notification_text.setVisibility(View.VISIBLE);
 
@@ -818,6 +834,16 @@ public class EVCaptureActivity extends BaseActivity {
 
         currentResultString = large_notification_text.getText().toString();
         changeMessageState(message_state);
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Intent intent = new Intent();
+        intent.putExtra("result", currentResultString);
+        setResult(currentResult, intent);
+        finish();
     }
 
     private void changeMessageState(MESSAGE_STATE messageState) {
