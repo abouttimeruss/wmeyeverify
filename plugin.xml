@@ -55,6 +55,7 @@
      <config-file target="AndroidManifest.xml" parent="/manifest/application">
 	    <activity
             android:name="biz.incoding.silentshot.EVCaptureActivity"
+	    android:theme="@style/Theme.Transparent"
             android:screenOrientation="portrait">
         </activity>
     </config-file>

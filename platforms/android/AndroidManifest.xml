@@ -40,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="EVCaptureActivity"
+            android:name="EVCaptureActivity" android:theme="@style/Theme.Transparent"
             android:screenOrientation="portrait"/>
 
     </application>
