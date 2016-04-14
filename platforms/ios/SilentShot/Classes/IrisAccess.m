@@ -235,7 +235,7 @@
 - (void) eyeStatusChanged:(EVEyeStatus)newEyeStatus
 {
     
-    __block CDVPluginResult* result = nil;
+    //__block CDVPluginResult* result = nil;
     NSLog(@"%li", (long)newEyeStatus);
     //self.scanningOverlay.targetHighlighted = NO;
     switch (newEyeStatus) {
@@ -243,7 +243,7 @@
             NSLog(@"%@", @"Position your eyes in the window");
             
             message.text = @"Position your eyes in front of front camera (about 20cm to device)";
-            EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
+            //EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
             
             //[ev continueAuth];
 
@@ -259,7 +259,7 @@
         case EVEyeStatusTooFar:{
             NSLog(@"%@", @"Move device closer");
             message.text = @"Move device closer (about 20cm to device)";
-            EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
+            //EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
             
             //[ev continueAuth];
 
