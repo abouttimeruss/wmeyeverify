@@ -56,6 +56,14 @@ static int scanlineStopY;
     [self setNeedsDisplay];
 }
 
+- (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
@@ -72,7 +80,7 @@ static int scanlineStopY;
     Scanline *sc = [[Scanline alloc] initWithFrame:scanlineRect];
     [self addSubview:sc];
     sc.hidden = NO;
-    sc.backgroundColor = [UIColor colorWithRed:0.4 green:0.8 blue:0.4 alpha:1.0];
+    sc.backgroundColor = [self colorFromHexString:@"84B533"];
     [sc startAnimating];
 }
 
@@ -92,7 +100,7 @@ static int scanlineStopY;
 - (void)drawTarget:(CGRect)rect context:(CGContextRef)context
 {
     //draw target
-    UIColor * targetColorHighlighted = [UIColor colorWithRed:0.4 green:0.8 blue:0.4 alpha:1.0];
+    UIColor * targetColorHighlighted = [self colorFromHexString:@"84B533"];
     UIColor * targetColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
 
     CGContextSetFillColorWithColor(context, (self.targetHighlighted ? targetColorHighlighted : targetColor).CGColor);
