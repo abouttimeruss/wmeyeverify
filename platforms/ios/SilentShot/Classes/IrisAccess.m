@@ -152,6 +152,14 @@
     }
 }
 
+- (UIColor *)colorFromHexString:(NSString *)hexString {
+    unsigned rgbValue = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hexString];
+    [scanner setScanLocation:1]; // bypass '#' character
+    [scanner scanHexInt:&rgbValue];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16)/255.0 green:((rgbValue & 0xFF00) >> 8)/255.0 blue:(rgbValue & 0xFF)/255.0 alpha:1.0];
+}
+
 -(void)setDefaults {
     evLoader = [[EyeVerifyLoader alloc] init];
     [evLoader loadEyeVerifyWithLicense:@"1DBRJYSHENYXWOK0"];
@@ -171,17 +179,16 @@
     message.lineBreakMode = NSLineBreakByWordWrapping;
     [self.viewController.view addSubview:message];
     
-    counter = [[UILabel alloc] initWithFrame:CGRectMake(self.viewController.view.frame.size.width / 2 - 15, 85, 30, 30)];
+    counter = [[UILabel alloc] initWithFrame:CGRectMake(self.viewController.view.frame.size.width / 2 - 17, 85, 34, 34)];
     counter.textAlignment = NSTextAlignmentCenter;
-    counter.font = [UIFont boldSystemFontOfSize:24];
+    counter.font = [UIFont boldSystemFontOfSize:30];
     counter.backgroundColor = [UIColor clearColor];
-    counter.textColor = [UIColor yellowColor];
+    counter.textColor = [self colorFromHexString:@"5C8A00"];
     counter.alpha = 0.9;
-    [self.viewController.view addSubview:counter];
     
     progress = [[UIProgressView alloc] initWithFrame:CGRectMake(20, 220, self.viewController.view.frame.size.width - 40, 3)];
     progress.progress = 0.0;
-    progress.progressTintColor = [UIColor greenColor];
+    progress.progressTintColor = [self colorFromHexString:@"84B533"];
     progress.backgroundColor = [UIColor whiteColor];
     [self.viewController.view addSubview:progress];
 
@@ -191,7 +198,8 @@
     scanOverlay.hidden = YES;
     scanOverlay.backgroundColor = [UIColor clearColor];
     [self.viewController.view addSubview:scanOverlay];
-    
+    [self.viewController.view addSubview:counter];
+
     [ev setCaptureView:vv];
 
     
@@ -235,7 +243,7 @@
 - (void) eyeStatusChanged:(EVEyeStatus)newEyeStatus
 {
     
-    __block CDVPluginResult* result = nil;
+    //__block CDVPluginResult* result = nil;
     NSLog(@"%li", (long)newEyeStatus);
     //self.scanningOverlay.targetHighlighted = NO;
     switch (newEyeStatus) {
@@ -243,7 +251,7 @@
             NSLog(@"%@", @"Position your eyes in the window");
             
             message.text = @"Position your eyes in front of front camera (about 20cm to device)";
-            EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
+            //EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
             
             //[ev continueAuth];
 
@@ -259,7 +267,7 @@
         case EVEyeStatusTooFar:{
             NSLog(@"%@", @"Move device closer");
             message.text = @"Move device closer (about 20cm to device)";
-            EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
+            //EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
             
             //[ev continueAuth];
 
