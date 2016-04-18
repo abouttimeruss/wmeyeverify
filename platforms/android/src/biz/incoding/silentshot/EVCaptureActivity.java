@@ -746,7 +746,10 @@ public class EVCaptureActivity extends BaseActivity {
                 Log.d(TAG, "Finished verifyCompleted: success="+ completion.isSuccess()+"; signatureVerify="+signatureVerify);
                 if(completion.isSuccess()) {
                     currentResult = RESULT_OK;
-                    setResult(currentResult);
+                    currentResultString =  EVServiceHelper.data2string(completion.getSignedNonce());
+                    Intent intent = new Intent();
+                    intent.putExtra("result", currentResultString);
+                    setResult(currentResult,intent);
                     finish();
                 }
             } catch (Throwable ex) {
@@ -846,8 +849,8 @@ public class EVCaptureActivity extends BaseActivity {
             e.printStackTrace();
         }
         Intent intent = new Intent();
-        intent.putExtra("result", currentResultString);
-        setResult(currentResult, intent);
+        intent.putExtra("result", large_notification_text.getText());
+        setResult(RESULT_CANCELED, intent);
         finish();
     }
 
@@ -881,7 +884,16 @@ public class EVCaptureActivity extends BaseActivity {
 
                         scan_again_button.setVisibility(View.VISIBLE);
                 scan_again_button.setText(getString(getResources().getIdentifier("button_title_scan_again","string",getPackageName())));
-
+                try {
+                    reconfigureProgressBar();
+                    mServiceClient.continueAuth();
+                    resumeAuth();
+                } catch (Throwable ex) {
+                    String msg = "Failed to continue.";
+                    Log.e(TAG, msg, ex);
+                    //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+                    currentResultString = msg;
+                }
                 break;
             case ERROR:
                 large_notification_text.setVisibility(View.VISIBLE);
