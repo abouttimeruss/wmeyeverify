@@ -40,28 +40,11 @@
         </activity>
         <activity
             android:name="EVCaptureActivity"
-            android:windowIsTranslucent="true"
-            android:windowBackground="@android:color/transparent"
-            android:windowContentOverlay="@null"
-            android:windowNoTitle="true"
-            android:windowIsFloating="true"
-            android:backgroundDimEnabled="false"
+            android:theme="@android:style/Theme.Translucent"
             android:screenOrientation="portrait"/>
 
     </application>
-    <!--<service-->
-        <!--android:name="com.eyeverify.remote.EyeVerifyRemoteService"-->
-        <!--android:enabled="true"-->
-        <!--android:exported="true"-->
-        <!--android:process=":remote">-->
-        <!--<intent-filter>-->
-            <!--<action android:name="com.eyeverify.IEyeVerifyRemoteService" />-->
-        <!--</intent-filter>-->
-        <!--<meta-data-->
-            <!--android:name="disableRegistration"-->
 
-            <!--android:value="true" />-->
-    <!--</service>-->
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="23" />
