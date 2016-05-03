@@ -133,6 +133,8 @@
     
 </config-file>
 
+     <resource-file src="platforms/android/res/drawable-port-xhdpi/progress_bar.xml" target="res/drawable-port-xhdpi/progress_bar.xml" />
+
     <resource-file src="platforms/android/res/anim/left_slide_in.xml" target="res/anim/left_slide_in.xml" />
     <resource-file src="platforms/android/res/anim/left_slide_out.xml" target="res/anim/left_slide_out.xml" />
     <resource-file src="platforms/android/res/anim/right_slide_in.xml" target="res/anim/right_slide_in.xml" />
