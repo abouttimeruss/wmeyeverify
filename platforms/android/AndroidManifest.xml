@@ -23,7 +23,6 @@
 
     <application
         android:hardwareAccelerated="true"
-        android:icon="@drawable/icon"
         android:label="@string/app_name">
         <activity
             android:name="CordovaApp"
@@ -40,7 +39,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="EVCaptureActivity" android:theme="@style/Theme.Transparent"
+            android:name="EVCaptureActivity"
+            android:windowIsTranslucent="true"
+            android:windowBackground="@android:color/transparent"
+            android:windowContentOverlay="@null"
+            android:windowNoTitle="true"
+            android:windowIsFloating="true"
+            android:backgroundDimEnabled="false"
             android:screenOrientation="portrait"/>
 
     </application>

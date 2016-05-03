@@ -14,12 +14,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-//import android.widget.Toast;
 
 import com.eyeverify.evserviceinterface.aidl.data.EVServiceHelper;
 import com.eyeverify.evserviceinterface.client.EVEnrollCompletion;
@@ -42,6 +39,8 @@ import java.security.PublicKey;
 import java.security.Signature;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Map;
+
+//import android.widget.Toast;
 
 public class EVCaptureActivity extends BaseActivity {
 
@@ -69,10 +68,6 @@ public class EVCaptureActivity extends BaseActivity {
     private ViewGroup service_window;
 
     ProgressBar enroll_progress;
-    Button scan_again_button;
-    Button continue_button;
-    Button cancel_button;
-    ImageView capture_complete_checkmark;
 
     ViewGroup service_overlay;
 
@@ -81,14 +76,10 @@ public class EVCaptureActivity extends BaseActivity {
     int overlay_top;
     int overlay_left;
 
-    private View leftEyeBox;
-    private View rightEyeBox;
 
     TargetRectangle target_box;
     TextView counter_text;
     TextView capture_notification_text;
-    TextView large_notification_text;
-    //TextView sub_notification_text;
 
     String servicePackageName;
 
@@ -138,62 +129,12 @@ public class EVCaptureActivity extends BaseActivity {
 
         enroll_progress = (ProgressBar) findViewById(getResources().getIdentifier("capture_enroll_progress", "id", getPackageName()));
 
-        capture_complete_checkmark =  (ImageView) findViewById(getResources().getIdentifier("capture_complete_checkmark", "id", getPackageName()));
-
-        scan_again_button = (Button) findViewById(getResources().getIdentifier("capture_scan_again_button", "id", getPackageName()));
-        scan_again_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    reconfigureProgressBar();
-                    mServiceClient.continueAuth();
-                    resumeAuth();
-                } catch (Throwable ex) {
-                    String msg = "Failed to continue.";
-                    Log.e(TAG, msg, ex);
-                    //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-                    currentResultString = msg;
-                }
-            }
-        });
-
-        cancel_button = (Button) findViewById(getResources().getIdentifier("capture_cancel_button", "id", getPackageName()));
-        cancel_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeVideoOverlays();
-                Intent intent = new Intent();
-                intent.putExtra("result",  currentResultString);
-                setResult(currentResult, intent);
-
-                finish();
-            }
-        });
-        cancel_button.setEnabled(false);
-
-        continue_button = (Button) findViewById(getResources().getIdentifier("capture_continue_button", "id", getPackageName()));
-        continue_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeVideoOverlays();
-                Intent intent = new Intent();
-                intent.putExtra("result",  currentResultString);
-                setResult(currentResult, intent);
-                finish();
-            }
-        });
-
         service_overlay = (ViewGroup) findViewById(getResources().getIdentifier("capture_overlay", "id", getPackageName()));
 
         target_box = (TargetRectangle) findViewById(getResources().getIdentifier("capture_target_box", "id", getPackageName()));
         counter_text = (TextView) findViewById(getResources().getIdentifier("capture_counter_text", "id", getPackageName()));
 
         capture_notification_text = (TextView) findViewById(getResources().getIdentifier("capture_notification_text", "id", getPackageName()));
-        large_notification_text = (TextView) findViewById(getResources().getIdentifier("capture_large_notification_text", "id", getPackageName()));
-        //sub_notification_text = (TextView) findViewById(getResources().getIdentifier("capture_sub_notification_text", "id", getPackageName()));
-
-//        leftEyeBox =  findViewById(R.id.left_eye_box);
-//        rightEyeBox =  findViewById(R.id.right_eye_box);
     }
 
     @Override
@@ -201,10 +142,6 @@ public class EVCaptureActivity extends BaseActivity {
         super.onResume();
 
         configureProgressBar(0, 10, 0);
-
-        scan_again_button.setVisibility(View.GONE);
-        continue_button.setVisibility(View.GONE);
-        capture_complete_checkmark.setVisibility(View.GONE);
 
         if (isMidSession) {
             Intent intent = new Intent();
@@ -237,7 +174,6 @@ public class EVCaptureActivity extends BaseActivity {
 
     private void doAuth() {
         try {
-            cancel_button.setEnabled(true);
             Log.d(TAG, "EVCaptureActivity.doAuth");
 
             if (isEnrollment) {
@@ -384,15 +320,12 @@ public class EVCaptureActivity extends BaseActivity {
 
     private void clearAllTexts() {
         capture_notification_text.setText("");
-        large_notification_text.setText("");
-        //sub_notification_text.setText("");
     }
 
     private void resumeAuth() {
         clearAllTexts();
         target_box.startScanning();
         counter_text.setVisibility(View.VISIBLE);
-        scan_again_button.setVisibility(View.GONE);
     }
 
     private class EVListener implements EVServiceListener, EVEyeRegionsChangedListener, EVEyeStatusChangedListener {
@@ -430,12 +363,10 @@ public class EVCaptureActivity extends BaseActivity {
         public void handleEvent(EVEyeRegionsChangedEvent event) {
             // Log.d(TAG, "Handle EVEyeRegionsChangedEvent: previewLeftX=" + event.getOriginalPreviewLeftX() + "; previewLeftY=" + event.getOriginalPreviewLeftY() + "; previewLeftW=" + event.getOriginalPreviewLeftW() + "; previewLeftH=" + event.getOriginalPreviewLeftH());
 
-            if (currentEyeStatus== EVEnums.EyeStatus.None || leftEyeBox==null || rightEyeBox==null) {
+            if (currentEyeStatus== EVEnums.EyeStatus.None ) {
                 return;
             }
 
-            leftEyeBox.setVisibility(View.VISIBLE);
-            rightEyeBox.setVisibility(View.VISIBLE);
 
             Integer leftX = event.getPreviewLeftX();
             Integer leftY = event.getPreviewLeftY();
@@ -455,11 +386,9 @@ public class EVCaptureActivity extends BaseActivity {
 
                 RelativeLayout.LayoutParams leftLayoutParams = new RelativeLayout.LayoutParams(service_window.getLayoutParams());
                 leftLayoutParams.setMargins(leftX, leftY, screenW - (leftX + leftW), screenH - (leftY + leftH));
-                leftEyeBox.setLayoutParams(leftLayoutParams);
 
                 RelativeLayout.LayoutParams rightLayoutParams = new RelativeLayout.LayoutParams(service_window.getLayoutParams());
                 rightLayoutParams.setMargins(rightX, rightY, screenW - (rightX + rightW), screenH - (rightY + rightH));
-                rightEyeBox.setLayoutParams(rightLayoutParams);
             }
         }
 
@@ -569,13 +498,8 @@ public class EVCaptureActivity extends BaseActivity {
         public void enrollmentCompleted(EVEnrollCompletion completion) {
             try {
 
-                scan_again_button.setVisibility(View.GONE);
-                cancel_button.setVisibility(View.GONE);
-                continue_button.setVisibility(View.VISIBLE);
 
                 Log.d(TAG, "Starting enrollmentCompleted: success=" + completion.isSuccess() + "; user_key=" + new String(completion.getUserKey()));
-
-                //Toast.makeText(getApplicationContext(), completion.isSuccess() ? R.string.main_enrollment_success : R.string.main_enrollment_failure, Toast.LENGTH_LONG).show();
 
                 if (completion.isSuccess()) {
                     currentResult = RESULT_OK;
@@ -591,12 +515,7 @@ public class EVCaptureActivity extends BaseActivity {
                     }
                     editor.apply();
 
-                    capture_complete_checkmark.setVisibility(View.VISIBLE);
-
                     capture_notification_text.setText(getString(getResources().getIdentifier("enroll_completed_message", "string", getPackageName())));
-                    //sub_notification_text.setText(getString(getResources().getIdentifier("enroll_done_message", "string", getPackageName())));
-                    large_notification_text.setVisibility(View.GONE);
-                    //sub_notification_text.setVisibility(View.GONE);
                     Intent intent = new Intent();
                     intent.putExtra("result", currentResultString);
                     setResult(currentResult, intent);
@@ -667,13 +586,7 @@ public class EVCaptureActivity extends BaseActivity {
         public void verificationCompleted(EVVerifyCompletion completion) {
             try {
 
-                scan_again_button.setVisibility(View.GONE);
-                cancel_button.setVisibility(View.GONE);
-                continue_button.setVisibility(View.VISIBLE);
-
                 Log.d(TAG, "Starting verificationCompleted: success=" + completion.isSuccess() + "; user_key=" + new String(completion.getUserKey()));
-
-                //Toast.makeText(getApplicationContext(), completion.isSuccess() ? R.string.main_verify_success : R.string.main_verify_failure, Toast.LENGTH_LONG).show();
 
                 boolean signatureVerify = false;
                 if (completion.isSuccess()) {
@@ -706,9 +619,6 @@ public class EVCaptureActivity extends BaseActivity {
                     }
 
                     capture_notification_text.setText(getString(getResources().getIdentifier("main_verify_success","string",getPackageName())));
-                    large_notification_text.setVisibility(View.GONE);
-                    //sub_notification_text.setVisibility(View.GONE);
-                    capture_complete_checkmark.setVisibility(View.VISIBLE);
                 }
                 else if (completion.wasAborted()) {
                     showAbortMessages(completion.getAbortResult());
@@ -763,84 +673,62 @@ public class EVCaptureActivity extends BaseActivity {
 
         MESSAGE_STATE message_state = MESSAGE_STATE.ERROR;
 
-        if (large_notification_text == null) return;
-        large_notification_text.setTextColor(getResources().getColor(getResources().getIdentifier("ev_heading_text_error", "color", getPackageName())));
-        //!!!!!!!!!!!!!!!
-//        large_notification_text.setVisibility(View.VISIBLE);
-//        sub_notification_text.setVisibility(View.VISIBLE);
-//!!!!!!!!!!!!!!!
         currentResult = RESULT_CANCELED;
         switch (theError) {
             case NOT_ENROLLED:
-                large_notification_text.setText(getString(getResources().getIdentifier("string.capture_error_not_enrolled","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_wipe_camera","string",getPackageName())));
+                currentResultString = getString(getResources().getIdentifier("string.capture_error_not_enrolled","string",getPackageName()));
                 break;
             case DISTANCE:
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_error_distance","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_distance","string",getPackageName())));
+                currentResultString = getString(getResources().getIdentifier("capture_error_distance","string",getPackageName()));
                 break;
             case NO_EYE:
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_noeye_error","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_no_eye","string",getPackageName())));
+                currentResultString = getString(getResources().getIdentifier("capture_noeye_error","string",getPackageName()));
                 break;
             case QUALITY:
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_error_quality","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_quality","string",getPackageName())));
+                currentResultString = getString(getResources().getIdentifier("capture_error_quality","string",getPackageName()));
                 break;
             case SYSTEM:
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_error_system","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_system","string",getPackageName())));
+                currentResultString = getString(getResources().getIdentifier("capture_error_system","string",getPackageName()));
                 break;
             case LICENSE_INVALID:
                 message_state = MESSAGE_STATE.ABORT;
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_license_invalid_suggestion","string",getPackageName())));
-                //sub_notification_text.setText("");
+                currentResultString = getString(getResources().getIdentifier("capture_license_invalid_suggestion","string",getPackageName()));
                 break;
             case LICENSE_EXPIRED:
                 message_state = MESSAGE_STATE.ABORT;
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_license_expired_suggestion","string",getPackageName())));
-                //sub_notification_text.setText("");
+                currentResultString = getString(getResources().getIdentifier("capture_license_expired_suggestion","string",getPackageName()));
                 break;
             case LICENSE_LIMITED:
                 message_state = MESSAGE_STATE.ABORT;
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_license_limited_suggestion","string",getPackageName())));
-                //sub_notification_text.setText("");
+                currentResultString = getString(getResources().getIdentifier("capture_license_limited_suggestion","string",getPackageName()));
                 break;
             case INTERNET:
                 message_state = MESSAGE_STATE.ABORT;
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_error_internet","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_internet","string",getPackageName())));
+                currentResultString = getString(getResources().getIdentifier("capture_error_internet","string",getPackageName()));
                 break;
             case ENROLLMENT_MATCH:
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_error_enrollment_match","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_enrollment_match","string",getPackageName())));
+                currentResultString = getString(getResources().getIdentifier("capture_error_enrollment_match","string",getPackageName()));
                 break;
             case CHAFF:
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_error_chaff","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_chaff","string",getPackageName())));
+                currentResultString = getString(getResources().getIdentifier("capture_error_chaff","string",getPackageName()));
                 break;
             case APP_BACKGROUND:
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_error_background","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_background","string",getPackageName())));
+                currentResultString = getString(getResources().getIdentifier("capture_error_background","string",getPackageName()));
                 break;
             case LOW_LIGHTING:
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_error_low_lighting","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_low_lighting","string",getPackageName())));
+                currentResultString = getString(getResources().getIdentifier("capture_error_low_lighting","string",getPackageName()));
                 break;
             case NOT_SUPPORTED:
                 message_state = MESSAGE_STATE.ABORT;
-                large_notification_text.setText(getString(getResources().getIdentifier("capture_error_not_supported","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_not_supported","string",getPackageName())));
+                currentResultString = getString(getResources().getIdentifier("capture_error_not_supported","string",getPackageName()));
                 break;
             default:
-                large_notification_text.setText(mServiceClient.isEnrollment() ?
+                currentResultString = mServiceClient.isEnrollment() ?
                         getString(getResources().getIdentifier("capture_error_not_enrolled","string",getPackageName())) :
-                        getString(getResources().getIdentifier("capture_error_not_verified","string",getPackageName())));
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_wipe_camera","string",getPackageName())));
+                        getString(getResources().getIdentifier("capture_error_not_verified","string",getPackageName()));
                 break;
         }
 
-        currentResultString = large_notification_text.getText().toString();
         changeMessageState(message_state);
 
         try {
@@ -849,41 +737,22 @@ public class EVCaptureActivity extends BaseActivity {
             e.printStackTrace();
         }
         Intent intent = new Intent();
-        intent.putExtra("result", large_notification_text.getText());
+        intent.putExtra("result", currentResultString);
         setResult(RESULT_CANCELED, intent);
         finish();
     }
 
     private void changeMessageState(MESSAGE_STATE messageState) {
 
-        large_notification_text.setVisibility(View.INVISIBLE);
-        //sub_notification_text.setVisibility(View.INVISIBLE);
-
         counter_text.setVisibility(View.GONE);
-        scan_again_button.setVisibility(View.GONE);
 
         //only change what differs from defaults above
         switch (messageState) {
             case ALERT:
-                scan_again_button.setVisibility(View.VISIBLE);
 
                 break;
             case NEW_SESSION:
 
-                large_notification_text.setVisibility(View.VISIBLE);
-
-                if (enroll_progress.getProgress() < 50) {
-                    //TODO: get last session as event
-                    large_notification_text.setText(getString(getResources().getIdentifier("capture_enrollment_new_session","string",getPackageName())));
-                } else {
-                    large_notification_text.setText(getString(getResources().getIdentifier("capture_enrollment_new_session_almost_done","string",getPackageName())));
-                }
-
-                //sub_notification_text.setVisibility(View.VISIBLE);
-                //sub_notification_text.setText(getString(getResources().getIdentifier("capture_suggestion_enrollment_new_session", "string",getPackageName())));
-
-                        scan_again_button.setVisibility(View.VISIBLE);
-                scan_again_button.setText(getString(getResources().getIdentifier("button_title_scan_again","string",getPackageName())));
                 try {
                     reconfigureProgressBar();
                     mServiceClient.continueAuth();
@@ -891,21 +760,13 @@ public class EVCaptureActivity extends BaseActivity {
                 } catch (Throwable ex) {
                     String msg = "Failed to continue.";
                     Log.e(TAG, msg, ex);
-                    //Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                     currentResultString = msg;
                 }
                 break;
             case ERROR:
-                large_notification_text.setVisibility(View.VISIBLE);
-                //sub_notification_text.setVisibility(View.VISIBLE);
-
-                scan_again_button.setText(getString(getResources().getIdentifier("button_title_keep_scanning", "string",getPackageName())));
-                        scan_again_button.setVisibility(View.VISIBLE);
 
                 break;
             case ABORT:
-                large_notification_text.setVisibility(View.VISIBLE);
-                //sub_notification_text.setVisibility(View.VISIBLE);
 
                 break;
             default:
