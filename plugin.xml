@@ -55,10 +55,16 @@
      <config-file target="AndroidManifest.xml" parent="/manifest/application">
 	    <activity
             android:name="biz.incoding.silentshot.EVCaptureActivity"
-	    android:theme="@style/Theme.Transparent"
+            android:windowIsTranslucent="true"
+            android:windowBackground="@android:color/transparent"
+            android:windowContentOverlay="@null"
+            android:windowNoTitle="true"
+            android:windowIsFloating="true"
+            android:backgroundDimEnabled="false"
             android:screenOrientation="portrait">
         </activity>
     </config-file>
+
 
     <config-file target="AndroidManifest.xml" parent="/manifest">
         <uses-permission android:name="android.permission.INTERNET" />
