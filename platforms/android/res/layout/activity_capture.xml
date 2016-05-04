@@ -23,7 +23,13 @@
                 android:layout_height="match_parent">
             </biz.incoding.silentshot.TargetRectangle>
 
-            <TextView android:id="@+id/capture_counter_text" style="@style/capture_counter_text" />
+            <TextView android:id="@+id/capture_counter_text"
+                android:textColor = "#5C8A00"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:layout_centerHorizontal = "true"
+                android:textSize = "60sp"/>
+
 
         </RelativeLayout>
 
@@ -35,8 +41,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/capture_window">
 
-        <ProgressBar android:id="@+id/capture_enroll_progress" style="@style/progress_bar" />
-        <TextView android:id="@+id/capture_notification_text" style="@style/progress_bar_text"/>
+        <ProgressBar android:id="@+id/capture_enroll_progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"/>
+
+        <TextView android:id="@+id/capture_notification_text"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
 
     </RelativeLayout>
 
