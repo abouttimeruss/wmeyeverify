@@ -44,8 +44,8 @@ _DRISHTI_SDK_BEGIN
  * Vec types
  */
 
-template <typename T, int D> struct Vec 
-{ 
+template <typename T, int D> struct Vec
+{
 public:
     Vec() {}
     
@@ -63,6 +63,39 @@ typedef Vec<float, 2> Vec2f;
 typedef Vec<float, 3> Vec3f;
 typedef Vec<int, 2> Vec2i;
 typedef Vec<int, 3> Vec3i;
+
+/*
+ * Size2 types
+ */
+
+template < typename T >
+struct Size2
+{
+    Size2() : width(0), height(0) {}
+    Size2(T width, T height) : width(width), height(height) {}
+    T width, height;
+};
+
+typedef Size2<float> Size2f;
+typedef Size2<int> Size2i;
+
+/*
+ * Rect types
+ */
+
+template < typename T >
+struct Rect
+{
+    Rect() : x(0), y(0), width(0), height(0) {}
+    Rect(T x, T y, T width, T height) : x(x), y(y),  width(width), height(height) {}
+    
+    Size2<T> size() const { return Size2<T>(width, height); }
+    
+    T x, y, width, height;
+};
+
+typedef Rect<int> Recti;
+typedef Rect<float> Rectf;
 
 /*
  * Image types

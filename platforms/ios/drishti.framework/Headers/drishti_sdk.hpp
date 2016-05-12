@@ -41,7 +41,7 @@
 #  define DRISHTI_EXPORTS
 #endif
 
-#define _DRISHTI_BEGIN namespace drishti { 
+#define _DRISHTI_BEGIN namespace drishti {
 #define _DRISHTI_END }
 
 #define _DRISHTI_SDK_BEGIN _DRISHTI_BEGIN namespace sdk {
@@ -49,9 +49,26 @@
 
 #include <string> // move out
 
-int getMajorVersion();
-int getMinorVersion();
-int getPatchVersion();
+_DRISHTI_SDK_BEGIN
+
+#define DRISHTI_VERSION_MAJOR 0
+#define DRISHTI_VERSION_MINOR 7
+#define DRISHTI_VERSION_PATCH 0
+#define DRISHTI_VERSION_STATUS "" // e.g., "-dev"
+
+#define DRISHTI_STR_EXP(__A)  #__A
+#define DRISHTI_STR(__A)      DRISHTI_STR_EXP(__A)
+
+#define DRISHTI_STRW_EXP(__A)  L#__A
+#define DRISHTI_STRW(__A)      DRISHTI_STRW_EXP(__A)
+
+#define DRISHTI_VERSION  DRISHTI_STR(DRISHTI_VERSION_MAJOR) "." DRISHTI_STR(DRISHTI_VERSION_MINOR) "." DRISHTI_STR(DRISHTI_VERSION_REVISION) DRISHTI_VERSION_STATUS
+
+#define DRISHTI_EXTERN_C_BEGIN extern "C" {
+#define DRISHTI_EXTERN_C_END }
+
 std::string getVersion();
+
+_DRISHTI_SDK_END
 
 #endif // __drishtisdk__SDK__

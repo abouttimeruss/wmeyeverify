@@ -16,10 +16,13 @@
 @property (nonatomic, assign) AVCaptureExposureMode exposure;
 @property (nonatomic, assign) AVCaptureFocusMode focus;
 
+@property (nonatomic, readonly, getter=isAudioLivenessEnabled) BOOL audioLivenessEnabled;
+@property (nonatomic, readonly, getter=isAudioLivenessEnabledOniPad) BOOL audioLivenessEnabledOniPad;
 @property (nonatomic, assign) BOOL useVideoFeed;
 @property (nonatomic, assign) int numCapturesPerExposure;
 @property (nonatomic, assign) BOOL livenessEnabled;
 @property (nonatomic, assign) BOOL logEnhancedImages;
+@property (nonatomic, readonly, getter=isTargetVisible) BOOL targetVisible;
 @property (nonatomic, assign) BOOL testDataServiceEnabled;
 @property (nonatomic, readonly) BOOL isRestrictedMode;
 @property (nonatomic, readonly) NSString *version;

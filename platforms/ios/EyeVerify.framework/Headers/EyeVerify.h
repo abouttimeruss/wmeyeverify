@@ -17,6 +17,7 @@
 typedef NS_ENUM(NSInteger, EVEyeStatus) {
     EVEyeStatusOkay,
     EVEyeStatusTooFar,
+    EVEyeStatusTooClose,
     EVEyeStatusNoEye,
 };
 
@@ -31,17 +32,67 @@ typedef NS_ENUM(NSInteger, EVEyeStatus) {
 - (void)eyeStatusChanged:(EVEyeStatus)newEyeStatus;
 - (void)enrollmentSessionStarted:(int)totalSteps;
 - (void)enrollmentSessionCompleted:(BOOL)isFinished;
+- (void)showTarget:(BOOL)isVisible atPoint:(CGPoint)point animationDuration:(NSTimeInterval)duration;
 @end
 
 /// @}
 
-@class EVAuthenticator;
-
 /// @name Completion Blocks
 /// @{
 
-typedef void(^EnrollmentCompletion)(BOOL enrolled, NSData *userKey, NSError *error);
-typedef void(^VerificationCompletion)(BOOL verified, NSData *userKey, NSError *error);
+typedef enum : NSInteger {
+    EVEnrollmentResultNothing = -1,
+    EVEnrollmentResultSuccess = 0,
+    EVEnrollmentResultError = 1,
+    EVEnrollmentResultBadQuality = 2,
+    EVEnrollmentResultAborted = 3,
+    EVEnrollmentResultNoop = 4,
+    EVEnrollmentResultHTTPError = 5,
+    EVEnrollmentResultBadMatch = 6,
+    EVEnrollmentResultEyenessFailed = 9,
+    EVEnrollmentResultZeroImages = 10,
+    EVEnrollmentResultIncomplete = 11,
+    EVEnrollmentResultNoEyes = 12,
+    EVEnrollmentResultLowLight = 13
+} EVEnrollmentResult;
+
+typedef enum : NSInteger {
+    EVAbortReasonNone = -1,
+    EVAbortReasonSystemTimeout = 0,
+    EVAbortReasonUserCancel = 1,
+    EVAbortReasonAppBackground = 2,
+    EVAbortReasonUnsupportedDevice = 3,
+    EVAbortReasonLicenseInvalid = 4,
+    EVAbortReasonLicenseExpired = 5,
+    EVAbortReasonLicenseLimited = 6,
+    EVAbortReasonInternetRequired = 7,
+    EVAbortReasonLowLighting = 8,
+} EVAbortReason;
+
+typedef void(^EnrollmentDetailCompletion)(EVEnrollmentResult result, NSData *userKey, EVAbortReason abort_reason);
+
+typedef enum : NSInteger {
+    EVVerifyResultNothing = -1,
+    EVVerifyResultMatch = 0,
+    EVVerifyResultNotMatch = 1,
+    EVVerifyResultBadQuality = 2,
+    EVVerifyResultError = 3,
+    EVVerifyResultLivenessFailed = 4,
+    EVVerifyResultAborted = 5,
+    EVVerifyResultNoop = 6,
+    EVVerifyResultHTTPError = 7,
+    EVVerifyResultNoServerAuthData = 8,
+    EVVerifyResultMatchWithEnroll = 9,
+    EVVerifyResultNoEnrollments = 10,
+    EVVerifyResultKeyGenFailed = 11,
+    EVVerifyResultCannotComputeFeature = 12,
+    EVVerifyResultZeroImages = 13,
+} EVVerifyResult;
+
+typedef void(^VerificationDetailCompletion)(EVVerifyResult result, NSData *userKey, EVAbortReason abort_reason);
+
+typedef void(^EnrollmentCompletion)(BOOL enrolled, NSData *userKey, NSError *error) DEPRECATED_MSG_ATTRIBUTE("Deprecated in v2.8.3.");
+typedef void(^VerificationCompletion)(BOOL verified, NSData *userKey, NSError *error) DEPRECATED_MSG_ATTRIBUTE("Deprecated in v2.8.3.");
 
 /// @}
 
@@ -53,8 +104,10 @@ FOUNDATION_EXPORT NSString *const EVErrorDomain;
 enum {
     EVSystemError = 1,
     EVUnsupportedDeviceError = 2,
-    EVUserAbortedError = 3,
-    EVInvalidLicenseError = 4
+    EVNoEyesDetected = 3,
+    EVUserAbortedError = 4,
+    EVInvalidLicenseError = 5,
+    EVLowLightingError=6
 };
 
 /// @}
@@ -73,14 +126,16 @@ enum {
 /// @name Enrollment
 /// @{
 
+- (instancetype)init;
+
 /**
  Use this method when user authentication utilizes the Local Key Storage
-
- @param user_name Unique ID of the user. Username should contain at least one character, cannot start with “.” symbol, cannot contain “ ” (space) or “/” symbols. Otherwise EyeVerify SDK will return error.
+ 
+ @param userName Unique ID of the user. Username should contain at least one character, cannot start with “.” symbol, cannot contain “ ” (space) or “/” symbols. Otherwise EyeVerify SDK will return error.
  @param userKey User Key of enrolled user. This parameter used only with Eyeprint Trust Server and Local Key Storage.
- @param block Completion block
+ @param completion Completion block
  */
-- (BOOL)enrollUser:(NSString *)user_name userKey:(NSData*)userKey localCompletionBlock:(EnrollmentCompletion)block;
+- (BOOL)enrollUser:(NSString *)userName userKey:(NSData *)userKey completion:(EnrollmentDetailCompletion)completion;
 
 /// @}
 
@@ -89,11 +144,11 @@ enum {
 
 /**
  Use this method to implement user authentication with User Key which will be retrieved by EyeVerify SDK from the Local Key Storage
-
- @param user_name Unique ID of the user. Username should contain at least one character, cannot start with “.” symbol, cannot contain “ ” (space) or “/” symbols. Otherwise EyeVerify SDK will return error.
- @param block Completion block
+ 
+ @param userName Unique ID of the user. Username should contain at least one character, cannot start with “.” symbol, cannot contain “ ” (space) or “/” symbols. Otherwise EyeVerify SDK will return error.
+ @param completion Completion block
  */
-- (BOOL)verifyUser:(NSString *)user_name localCompletionBlock:(VerificationCompletion)block;
+- (BOOL)verifyUser:(NSString *)userName completion:(VerificationDetailCompletion)completion;
 
 /// @}
 
@@ -162,9 +217,59 @@ enum {
  Compliance
 
  @param user_name Unique ID of the user. Username should contain at least one character, cannot start with “.” symbol, cannot contain “ ” (space) or “/” symbols. Otherwise EyeVerify SDK will return error.
- @param error An error object if (TODO: list error conditions)
- @return
+ @param error An error object if the license is invalid or if the device is not supported
+ @return true is compliant
  */
 - (BOOL)checkCompliance:(NSString *)userName error:(NSError**) error;
+
+/**
+ Dictates where the target should be positioned
+ 
+ @param isVisible true if target should be visible
+ @param atPoint location the target should be displayed
+ @param duration length of time the target should be displayed
+ 
+ */
+- (void)targetMovementCompleted:(BOOL)isVisible atPoint:(CGPoint)point animationDuration:(NSTimeInterval)duration;
+
+
+/** Use the pause method to pause a capture session. */
+- (void) pause;
+
+/** Use the resume method to resume a previously paused capture session. */
+- (void) resume;
+
+@end
+
+
+@interface EyeVerify (Deprecated)
+
+
+/// @name Enrollment
+/// @{
+
+/**
+ Use this method when user authentication utilizes the Local Key Storage
+ 
+ @param user_name Unique ID of the user. Username should contain at least one character, cannot start with “.” symbol, cannot contain “ ” (space) or “/” symbols. Otherwise EyeVerify SDK will return error.
+ @param userKey User Key of enrolled user. This parameter used only with Eyeprint Trust Server and Local Key Storage.
+ @param block Completion block
+ */
+- (BOOL)enrollUser:(NSString *)user_name userKey:(NSData*)userKey localCompletionBlock:(EnrollmentCompletion)block DEPRECATED_MSG_ATTRIBUTE("Deprecated in v2.8.3.");
+
+/// @}
+
+/// @name Verification
+/// @{
+
+/**
+ Use this method to implement user authentication with User Key which will be retrieved by EyeVerify SDK from the Local Key Storage
+ 
+ @param user_name Unique ID of the user. Username should contain at least one character, cannot start with “.” symbol, cannot contain “ ” (space) or “/” symbols. Otherwise EyeVerify SDK will return error.
+ @param block Completion block
+ */
+- (BOOL)verifyUser:(NSString *)user_name localCompletionBlock:(VerificationCompletion)block DEPRECATED_MSG_ATTRIBUTE("Deprecated in v2.8.3.");
+
+/// @}
 
 @end

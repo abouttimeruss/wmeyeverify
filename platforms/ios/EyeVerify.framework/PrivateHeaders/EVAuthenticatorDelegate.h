@@ -12,6 +12,7 @@
 #import "EVEnums.h"
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @protocol EVAuthenticatorDelegate <NSObject>
 
@@ -23,5 +24,5 @@
 - (void)enrollmentSessionStarted:(int)totalSteps;
 - (void)processingStarted;
 - (void)verificationStepCompleted:(verify_result_enum)result attemptNumber:(int)attemptNumber maxAttempts:(int)maxAttempts;
-
+- (void)showTarget:(BOOL)isVisible atPoint:(CGPoint)point animationDuration:(NSTimeInterval)duration;
 @end

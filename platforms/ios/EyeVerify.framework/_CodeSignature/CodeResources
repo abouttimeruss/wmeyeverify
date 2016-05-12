@@ -10,27 +10,27 @@
 		</data>
 		<key>Headers/EVSettings.h</key>
 		<data>
-		ovBzU88YeYbFoZtT8TtDYWqKNGk=
+		SnywZ0tinUSOWJcpsT4PMEcilMQ=
 		</data>
 		<key>Headers/EyeVerify.h</key>
 		<data>
-		lNtVWoIvqL77OiPWJpJ73CYXurw=
+		+yaJ9BQKzeHy91JnnBftDJa46R4=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		pKWNJtRDm/fA1jY6oFv91WjYYFs=
+		7TqPRbOWFdZdMhJFOxJhJi+Bwok=
 		</data>
 		<key>PrivateHeaders/EVAuthenticator.h</key>
 		<data>
-		okmIJyncV6TuBid2BJkEfqcL1ls=
+		JezLgCzszjT1Ltkr24iYXC3rUUE=
 		</data>
 		<key>PrivateHeaders/EVAuthenticatorDelegate.h</key>
 		<data>
-		Btv1BZy5eVjzld0tgI4rnfnB62E=
+		E07Ec5gE2f8eq6Yaqo6R0Bcz+nY=
 		</data>
 		<key>PrivateHeaders/EVEventDelegate.h</key>
 		<data>
-		9PFIJql4jZCckhREISTG0QCUlBg=
+		Gs9WpK5dO7UW91umDubk8H+99MY=
 		</data>
 		<key>PrivateHeaders/EVUtility.h</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>PrivateHeaders/VideoCamera.h</key>
 		<data>
-		88Jfqp1/fto5KZM7wMJJp9IUVRw=
+		21M17nMA8X5VoRtg3EowsZzlzIc=
 		</data>
 		<key>PrivateHeaders/WebService.h</key>
 		<data>
@@ -64,15 +64,11 @@
 		<data>
 		AYd2QiTYo2L6H3j2MJs20g7moT0=
 		</data>
-		<key>drishti_eye_eix.pba.z</key>
-		<data>
-		eryBJjdAhhEhj/rnOD7VS7P6hl4=
-		</data>
 		<key>en.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			rVrub6o7SZ6d2S9/oGwhrobYMtM=
+			hfDeVXIbg/B4r4kvwoSwnAtOW8c=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -81,7 +77,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rVrub6o7SZ6d2S9/oGwhrobYMtM=
+			hfDeVXIbg/B4r4kvwoSwnAtOW8c=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -90,70 +86,168 @@
 	<key>files2</key>
 	<dict>
 		<key>Headers/EVLicense.h</key>
-		<data>
-		qsztJUhJC++WITDS1s27tHqZSiE=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			qsztJUhJC++WITDS1s27tHqZSiE=
+			</data>
+			<key>hash2</key>
+			<data>
+			soEZEFXDILOaUgN3sx3hS5kGMicAp8AkVy2c8YJl9j4=
+			</data>
+		</dict>
 		<key>Headers/EVSettings.h</key>
-		<data>
-		ovBzU88YeYbFoZtT8TtDYWqKNGk=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			SnywZ0tinUSOWJcpsT4PMEcilMQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			C32KLd0vlm0VI08DvulTccSKB2G3COZoGyK0liUpXjA=
+			</data>
+		</dict>
 		<key>Headers/EyeVerify.h</key>
-		<data>
-		lNtVWoIvqL77OiPWJpJ73CYXurw=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			+yaJ9BQKzeHy91JnnBftDJa46R4=
+			</data>
+			<key>hash2</key>
+			<data>
+			vCzl58hioffENKGypkcxt9Iv++8j0szrdU6sTeBpVJI=
+			</data>
+		</dict>
 		<key>PrivateHeaders/EVAuthenticator.h</key>
-		<data>
-		okmIJyncV6TuBid2BJkEfqcL1ls=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			JezLgCzszjT1Ltkr24iYXC3rUUE=
+			</data>
+			<key>hash2</key>
+			<data>
+			JuhTVCC6ttbU8UKekp2zaO6wEhCJcA+IBIHbienh/8g=
+			</data>
+		</dict>
 		<key>PrivateHeaders/EVAuthenticatorDelegate.h</key>
-		<data>
-		Btv1BZy5eVjzld0tgI4rnfnB62E=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			E07Ec5gE2f8eq6Yaqo6R0Bcz+nY=
+			</data>
+			<key>hash2</key>
+			<data>
+			eG5LOeqlQi5rDKbJXdVuaiOLaF1CSRA7a3nXEZjwoq0=
+			</data>
+		</dict>
 		<key>PrivateHeaders/EVEventDelegate.h</key>
-		<data>
-		9PFIJql4jZCckhREISTG0QCUlBg=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			Gs9WpK5dO7UW91umDubk8H+99MY=
+			</data>
+			<key>hash2</key>
+			<data>
+			TOke1CrY2sAnzAzk1aLM58i5tjm9ZJ7jaM6DJRgK8iw=
+			</data>
+		</dict>
 		<key>PrivateHeaders/EVUtility.h</key>
-		<data>
-		obmfYq7Vl2CPCOE4Jxlf5Tw/T6A=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			obmfYq7Vl2CPCOE4Jxlf5Tw/T6A=
+			</data>
+			<key>hash2</key>
+			<data>
+			QysC/n43zcUWxz0TNwCNkapVzycdIYUW2RNyW92oUuE=
+			</data>
+		</dict>
 		<key>PrivateHeaders/EVVideoCameraDelegate.h</key>
-		<data>
-		kUiQU8UqNzTeh/e5vi2rIp1+aoM=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			kUiQU8UqNzTeh/e5vi2rIp1+aoM=
+			</data>
+			<key>hash2</key>
+			<data>
+			Q+iFM4XAf2fMOzzhiKDCcjtiyxgyhJYZWyCwjetW3Yk=
+			</data>
+		</dict>
 		<key>PrivateHeaders/EvpEventDelegate.hpp</key>
-		<data>
-		145FLtBfq9Z7EzaLkx6xXULmfY8=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			145FLtBfq9Z7EzaLkx6xXULmfY8=
+			</data>
+			<key>hash2</key>
+			<data>
+			VcpkDl6IVyFxNG5EeTqZxwkMOhO8I/EvI9J6h8gp/rs=
+			</data>
+		</dict>
 		<key>PrivateHeaders/ImageUtility.h</key>
-		<data>
-		viy86o0MgZfgrDUaqDqrTzqvQrA=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			viy86o0MgZfgrDUaqDqrTzqvQrA=
+			</data>
+			<key>hash2</key>
+			<data>
+			wMnUFfu3JGJLrhkplXaHz8oQsoR91ebKHZjqXfki8/0=
+			</data>
+		</dict>
 		<key>PrivateHeaders/NSString+Random.h</key>
-		<data>
-		hvPtSvQNLSQV/oSPBEKVK0MF6q8=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			hvPtSvQNLSQV/oSPBEKVK0MF6q8=
+			</data>
+			<key>hash2</key>
+			<data>
+			olyGoGkzcNwyBYJ0iynsiVxJifTxAUNjTCE3Jf8E2KA=
+			</data>
+		</dict>
 		<key>PrivateHeaders/VideoCamera.h</key>
-		<data>
-		88Jfqp1/fto5KZM7wMJJp9IUVRw=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			21M17nMA8X5VoRtg3EowsZzlzIc=
+			</data>
+			<key>hash2</key>
+			<data>
+			/VGUGVZov6eTdWx0xQFpFW7EV21dp7zhugyTKruTFKs=
+			</data>
+		</dict>
 		<key>PrivateHeaders/WebService.h</key>
-		<data>
-		yygtoVewHh+v1vZI7o+2fOAZjFE=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			yygtoVewHh+v1vZI7o+2fOAZjFE=
+			</data>
+			<key>hash2</key>
+			<data>
+			pQkq3+GjssPsp45hdKIRHkvoBxvk386h9LRnXxFMNmg=
+			</data>
+		</dict>
 		<key>PrivateHeaders/WebService.hpp</key>
-		<data>
-		AYd2QiTYo2L6H3j2MJs20g7moT0=
-		</data>
-		<key>drishti_eye_eix.pba.z</key>
-		<data>
-		eryBJjdAhhEhj/rnOD7VS7P6hl4=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			AYd2QiTYo2L6H3j2MJs20g7moT0=
+			</data>
+			<key>hash2</key>
+			<data>
+			cuSAtzd0Ep7E1sttHSIvD4/RXpL5tgb6FGcuD0I9P7U=
+			</data>
+		</dict>
 		<key>en.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			rVrub6o7SZ6d2S9/oGwhrobYMtM=
+			hfDeVXIbg/B4r4kvwoSwnAtOW8c=
+			</data>
+			<key>hash2</key>
+			<data>
+			bd5vUGLdjY6ncnX3Fb91Sl41Q+0eUsSbCIc1If+DlLw=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -162,7 +256,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rVrub6o7SZ6d2S9/oGwhrobYMtM=
+			hfDeVXIbg/B4r4kvwoSwnAtOW8c=
+			</data>
+			<key>hash2</key>
+			<data>
+			bd5vUGLdjY6ncnX3Fb91Sl41Q+0eUsSbCIc1If+DlLw=
 			</data>
 			<key>optional</key>
 			<true/>
