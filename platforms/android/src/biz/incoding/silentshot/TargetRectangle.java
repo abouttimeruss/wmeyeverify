@@ -55,9 +55,9 @@ public class TargetRectangle extends RelativeLayout {
 
         p = new Paint();
 
-        TARGET_COLOR = context.getResources().getColor(getResources().getIdentifier("target_box_no_eyes","color",context.getPackageName()));
+        TARGET_COLOR = Color.parseColor("#FF777777");
         LINE_COLOR = TARGET_COLOR;
-        TARGET_COLOR_SUCCESS = context.getResources().getColor(getResources().getIdentifier("target_box_has_eyes","color",context.getPackageName()));
+        TARGET_COLOR_SUCCESS = Color.parseColor("#84B533");
         LINE_COLOR_SUCCESS = TARGET_COLOR_SUCCESS;
 
         density = context.getResources().getDisplayMetrics().density;
