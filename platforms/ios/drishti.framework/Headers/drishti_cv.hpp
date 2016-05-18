@@ -55,15 +55,51 @@ Image<T2> cvToDrishti(const cv::Mat_<T1> &src)
     return Image<T2>(src.rows, src.cols, const_cast<T2*>(src.template ptr<T2>()), src.step[0]);
 }
 
+// Rect
+
+template <typename T>
+inline cv::Rect drishtiToCv(const drishti::sdk::Rect<T> &r) { return cv::Rect_<T>(r.x, r.y, r.width, r.height); }
+
+template <typename T>
+inline drishti::sdk::Recti cvToDrishti(const cv::Rect_<T> &r) { return drishti::sdk::Rect<T>(r.x, r.y, r.width, r.height); }
+
+// Size
+
+template <typename T>
+inline cv::Size drishtiToCv(const drishti::sdk::Size2<T> &r) { return cv::Size_<T>(r.width, r.height); }
+
+template <typename T>
+inline drishti::sdk::Size2<T> cvToDrishti(const cv::Size_<T> &r) { return drishti::sdk::Size2<T>(r.width, r.height); }
+
+// Point
+
 inline cv::Point2f drishtiToCv(const drishti::sdk::Vec2f &v) { return cv::Point2f(v[0], v[1]); }
 
 inline drishti::sdk::Vec2f cvToDrishti(const cv::Point2f &p) { return drishti::sdk::Vec2f(p.x, p.y); }
+
+// vector<Point>
+
+inline std::vector<cv::Point2f> drishtiToCv(const std::vector<drishti::sdk::Vec2f> &v)
+{
+    std::vector<cv::Point2f> p(v.size());
+    std::transform(v.begin(), v.end(), p.begin(), [](const drishti::sdk::Vec2f &v) { return drishtiToCv(v); });
+    return p;
+}
+
+inline std::vector<drishti::sdk::Vec2f> cvToDrishti(const std::vector<cv::Point2f> &p)
+{
+    std::vector<drishti::sdk::Vec2f> v(p.size());
+    std::transform(p.begin(), p.end(), v.begin(), [](const cv::Point2f &p) { return cvToDrishti(p); });
+    return v;
+}
+
+// Ellipse
 
 inline cv::RotatedRect drishtiToCv(const drishti::sdk::Eye::Ellipse &src)
 {
     cv::RotatedRect ellipse;
     ellipse.center = { src.center[0], src.center[1] };
-    ellipse.size = { src.size[0], src.size[1] };
+    ellipse.size = { src.size.width, src.size.height };
     ellipse.angle = src.angle * 180.f / float(M_PI);
     return ellipse;
 }

@@ -15,16 +15,11 @@
 #import <AVFoundation/AVFoundation.h>
 #import <CoreMotion/CoreMotion.h>
 
-static bool VideoCamera_open = false;
-
 @interface VideoCamera : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate, EVVideoCameraDelegate>
 
 /// Use this property to manage camera settings. Focus point, exposure point, etc.
 @property (nonatomic, readonly) BOOL isVideoMode;
 @property (readonly) AVCaptureDevice *inputCamera;
-@property (readonly, nonatomic) float brightness;
-@property (readonly, nonatomic) int isoRating;
-@property (readonly, nonatomic) CMTime currentTime;
 @property (assign, nonatomic) BOOL hardwareLocked;
 @property (nonatomic, readwrite) AVCaptureVideoPreviewLayer *previewLayer;
 @property (nonatomic, retain) AVCaptureSession *session;
@@ -36,5 +31,8 @@ static bool VideoCamera_open = false;
 
 - (void)startVideoPreview;
 - (void)stopVideoPreview;
+
+- (void) pause;
+- (void) resume;
 
 @end

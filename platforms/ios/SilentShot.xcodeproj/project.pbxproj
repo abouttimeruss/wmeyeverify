@@ -40,6 +40,9 @@
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		DC1528971CB8D9E400B7DDBC /* ScanningOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1528961CB8D9E400B7DDBC /* ScanningOverlayView.m */; };
+		DC7FBB271CE4680B0096C40E /* drishti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7FBB251CE4680B0096C40E /* drishti.framework */; };
+		DC7FBB281CE4680B0096C40E /* EyeVerify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC7FBB261CE4680B0096C40E /* EyeVerify.framework */; };
+		DC7FBB2B1CE468260096C40E /* EyeVerifyLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7FBB2A1CE468260096C40E /* EyeVerifyLoader.m */; };
 		DC95F9EB1C4518AD00B3DC61 /* IrisAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = DC95F9EA1C4518AD00B3DC61 /* IrisAccess.m */; };
 		DCA5ADC1191F7028004EC8B3 /* SilentShot.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA5ADC0191F7028004EC8B3 /* SilentShot.m */; };
 		DCC3BD1F1C95A8BD0061F2A0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3BD1E1C95A8BD0061F2A0 /* SystemConfiguration.framework */; };
@@ -48,9 +51,6 @@
 		DCC3BD301C95ACD10061F2A0 /* drishti.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3BD2D1C95ACD10061F2A0 /* drishti.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DCC3BD311C95ACD10061F2A0 /* EyeVerify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3BD2E1C95ACD10061F2A0 /* EyeVerify.framework */; };
 		DCC3BD321C95ACD10061F2A0 /* EyeVerify.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3BD2E1C95ACD10061F2A0 /* EyeVerify.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DCC3BD361C95AD150061F2A0 /* drishti.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3BD341C95AD150061F2A0 /* drishti.framework */; };
-		DCC3BD371C95AD150061F2A0 /* EyeVerify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC3BD351C95AD150061F2A0 /* EyeVerify.framework */; };
-		DCC3BD3F1C95AEBD0061F2A0 /* EyeVerifyLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC3BD3E1C95AEBD0061F2A0 /* EyeVerifyLoader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +128,10 @@
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 		DC1528951CB8D9E400B7DDBC /* ScanningOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanningOverlayView.h; sourceTree = "<group>"; };
 		DC1528961CB8D9E400B7DDBC /* ScanningOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanningOverlayView.m; sourceTree = "<group>"; };
+		DC7FBB251CE4680B0096C40E /* drishti.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = drishti.framework; sourceTree = "<group>"; };
+		DC7FBB261CE4680B0096C40E /* EyeVerify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EyeVerify.framework; sourceTree = "<group>"; };
+		DC7FBB291CE468260096C40E /* EyeVerifyLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EyeVerifyLoader.h; sourceTree = "<group>"; };
+		DC7FBB2A1CE468260096C40E /* EyeVerifyLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EyeVerifyLoader.m; sourceTree = "<group>"; };
 		DC95F9E91C4518AD00B3DC61 /* IrisAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IrisAccess.h; sourceTree = "<group>"; };
 		DC95F9EA1C4518AD00B3DC61 /* IrisAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IrisAccess.m; sourceTree = "<group>"; };
 		DCA5ADBF191F7028004EC8B3 /* SilentShot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SilentShot.h; sourceTree = "<group>"; };
@@ -136,10 +140,6 @@
 		DCC3BD201C95A8DD0061F2A0 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		DCC3BD2D1C95ACD10061F2A0 /* drishti.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = drishti.framework; sourceTree = "<group>"; };
 		DCC3BD2E1C95ACD10061F2A0 /* EyeVerify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EyeVerify.framework; sourceTree = "<group>"; };
-		DCC3BD341C95AD150061F2A0 /* drishti.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = drishti.framework; sourceTree = "<group>"; };
-		DCC3BD351C95AD150061F2A0 /* EyeVerify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EyeVerify.framework; sourceTree = "<group>"; };
-		DCC3BD3D1C95AEBD0061F2A0 /* EyeVerifyLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EyeVerifyLoader.h; sourceTree = "<group>"; };
-		DCC3BD3E1C95AEBD0061F2A0 /* EyeVerifyLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EyeVerifyLoader.m; sourceTree = "<group>"; };
 		DCE477731CAE94D000D3F57A /* EVLicense.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVLicense.h; sourceTree = "<group>"; };
 		DCE477741CAE94D000D3F57A /* EVSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EVSettings.h; sourceTree = "<group>"; };
 		DCE477751CAE94D000D3F57A /* EyeVerify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EyeVerify.h; sourceTree = "<group>"; };
@@ -160,10 +160,10 @@
 				DCC3BD1F1C95A8BD0061F2A0 /* SystemConfiguration.framework in Frameworks */,
 				5B1594DD16A7569C00FEF299 /* AssetsLibrary.framework in Frameworks */,
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
-				DCC3BD371C95AD150061F2A0 /* EyeVerify.framework in Frameworks */,
+				DC7FBB281CE4680B0096C40E /* EyeVerify.framework in Frameworks */,
 				DCC3BD2F1C95ACD10061F2A0 /* drishti.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
-				DCC3BD361C95AD150061F2A0 /* drishti.framework in Frameworks */,
+				DC7FBB271CE4680B0096C40E /* drishti.framework in Frameworks */,
 				DCC3BD311C95ACD10061F2A0 /* EyeVerify.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				5AEE5B35173C68D80009041E /* CoreLocation.framework in Frameworks */,
@@ -181,8 +181,8 @@
 				DCE477731CAE94D000D3F57A /* EVLicense.h */,
 				DCE477741CAE94D000D3F57A /* EVSettings.h */,
 				DCE477751CAE94D000D3F57A /* EyeVerify.h */,
-				DCC3BD3D1C95AEBD0061F2A0 /* EyeVerifyLoader.h */,
-				DCC3BD3E1C95AEBD0061F2A0 /* EyeVerifyLoader.m */,
+				DC7FBB291CE468260096C40E /* EyeVerifyLoader.h */,
+				DC7FBB2A1CE468260096C40E /* EyeVerifyLoader.m */,
 				DCA5ADBF191F7028004EC8B3 /* SilentShot.h */,
 				DCA5ADC0191F7028004EC8B3 /* SilentShot.m */,
 				DC95F9E91C4518AD00B3DC61 /* IrisAccess.h */,
@@ -270,8 +270,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DCC3BD341C95AD150061F2A0 /* drishti.framework */,
-				DCC3BD351C95AD150061F2A0 /* EyeVerify.framework */,
+				DC7FBB251CE4680B0096C40E /* drishti.framework */,
+				DC7FBB261CE4680B0096C40E /* EyeVerify.framework */,
 				DCC3BD201C95A8DD0061F2A0 /* ImageIO.framework */,
 				DCC3BD1E1C95A8BD0061F2A0 /* SystemConfiguration.framework */,
 				5AEE5B34173C68D80009041E /* CoreLocation.framework */,
@@ -496,9 +496,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCA5ADC1191F7028004EC8B3 /* SilentShot.m in Sources */,
+				DC7FBB2B1CE468260096C40E /* EyeVerifyLoader.m in Sources */,
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
-				DCC3BD3F1C95AEBD0061F2A0 /* EyeVerifyLoader.m in Sources */,
 				DC95F9EB1C4518AD00B3DC61 /* IrisAccess.m in Sources */,
 				DC1528971CB8D9E400B7DDBC /* ScanningOverlayView.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,

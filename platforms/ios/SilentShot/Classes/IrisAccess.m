@@ -84,12 +84,63 @@
 
 - (void) enroll {
     
-    __block CDVPluginResult* result = nil;
+    __block CDVPluginResult* enrolResult = nil;
     
     EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
     if (ev) {
         [ev setEVAuthSessionDelegate:self];
-        [ev enrollUser:ev.userName userKey:[userKeyFromOptions dataUsingEncoding:NSUTF8StringEncoding] localCompletionBlock:^(BOOL enrolled, NSData *userKey, NSError *error) {
+        
+        [ev enrollUser:ev.userName userKey:[userKeyFromOptions dataUsingEncoding:NSUTF8StringEncoding] completion:^(EVEnrollmentResult result, NSData *userKey, EVAbortReason abort_reason) {
+            
+            switch (result) {
+                case EVEnrollmentResultNoEyes:
+                case EVEnrollmentResultNoop:
+                case EVEnrollmentResultAborted:
+                case EVEnrollmentResultBadMatch:
+                case EVEnrollmentResultLowLight:
+                case EVEnrollmentResultNothing:
+                case EVEnrollmentResultBadQuality:
+                case EVEnrollmentResultIncomplete:
+                case EVEnrollmentResultHTTPError:
+                case  EVEnrollmentResultZeroImages:
+                case EVEnrollmentResultEyenessFailed:
+                case EVEnrollmentResultError:
+                {
+                    enrolResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[NSString stringWithFormat:@"EVEnrollmentResult: %li, EVAbortReason: %li", result, (long)abort_reason]];
+                    [[self.viewController.view viewWithTag:990] removeFromSuperview];
+                    [message removeFromSuperview];
+                    [progress removeFromSuperview];
+                    [counter removeFromSuperview];
+                    [scanOverlay removeFromSuperview];
+                    if (enrolResult) {
+                        [self.commandDelegate sendPluginResult:enrolResult callbackId:_latestCommand.callbackId];
+                    }
+                    self.hasPendingOperation = NO;
+                }
+                    break;
+                    
+                case EVEnrollmentResultSuccess:
+                {
+                    NSLog(@"Enrollment: enrolled=%d; userKey=%@ error=%@", YES, userKey != nil ? [[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding] : @"nil", @"none");
+                    enrolResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding]];
+                    [[self.viewController.view viewWithTag:990] removeFromSuperview];
+                    [message removeFromSuperview];
+                    [progress removeFromSuperview];
+                    [counter removeFromSuperview];
+                    [scanOverlay removeFromSuperview];
+                    if (enrolResult) {
+                        [self.commandDelegate sendPluginResult:enrolResult callbackId:_latestCommand.callbackId];
+                    }
+                    self.hasPendingOperation = NO;
+                }
+                    
+                    break;
+                default:
+                    break;
+            }
+        }];
+        
+        /*[ev enrollUser:ev.userName userKey:[userKeyFromOptions dataUsingEncoding:NSUTF8StringEncoding] localCompletionBlock:^(BOOL enrolled, NSData *userKey, NSError *error) {
             NSLog(@"Enrollment: enrolled=%d; userKey=%@ error=%@", enrolled, userKey != nil ? [[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding] : @"nil", error);
             if(enrolled)
             {
@@ -112,43 +163,72 @@
             }
             self.hasPendingOperation = NO;
            
-        }];
+        }];*/
     }
 }
 
 - (void) verify {
 
-    __block CDVPluginResult* result = nil;
+    __block CDVPluginResult* verifyResult = nil;
 
     EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
     if (ev) {
         [ev setEVAuthSessionDelegate:self];
-        [ev verifyUser:ev.userName localCompletionBlock:^(BOOL verified, NSData *userKey, NSError *error) {
-            NSLog(@"Verifying: verified=%d; userKey=%@ error=%@", verified, userKey != nil ? [[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding] : @"nil", error);
-            if(verified)
-            {
-                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:@[@(verified), userKey != nil ? [[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding] : @"nil"]];
-                //result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@"Verified"];
-            }
-            else
-            {
-                result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:@[@(verified), @"Not Verified"]];
-
-            }
-
-            [[self.viewController.view viewWithTag:990] removeFromSuperview];
-            [message removeFromSuperview];
-            [progress removeFromSuperview];
-            [counter removeFromSuperview];
-            [scanOverlay removeFromSuperview];
-            if (result) {
-                [self.commandDelegate sendPluginResult:result callbackId:_latestCommand.callbackId];
-            }
-            self.hasPendingOperation = NO;
-            
-            
+        
+        [ev verifyUser:ev.userName completion:^(EVVerifyResult result, NSData *userKey, EVAbortReason abort_reason) {
            
+            switch (result) {
+                case EVVerifyResultNoop:
+                case EVVerifyResultAborted:
+                case EVVerifyResultNothing:
+                case EVVerifyResultNotMatch:
+                case EVVerifyResultHTTPError:
+                case EVVerifyResultBadQuality:
+                case EVVerifyResultZeroImages:
+                case EVVerifyResultKeyGenFailed:
+                case EVVerifyResultNoEnrollments:
+                case EVVerifyResultLivenessFailed:
+                case EVVerifyResultNoServerAuthData:
+                case EVVerifyResultCannotComputeFeature:
+                case EVVerifyResultError:
+                {
+                    verifyResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:@[@(NO),[NSString stringWithFormat:@"Not Verified. EVVerifyResult: %li, EVAbortReason: %li", result, abort_reason]]];
+                    [[self.viewController.view viewWithTag:990] removeFromSuperview];
+                    [message removeFromSuperview];
+                    [progress removeFromSuperview];
+                    [counter removeFromSuperview];
+                    [scanOverlay removeFromSuperview];
+                    if (verifyResult) {
+                        [self.commandDelegate sendPluginResult:verifyResult callbackId:_latestCommand.callbackId];
+                    }
+                    self.hasPendingOperation = NO;
+
+                }
+                    break;
+                case EVVerifyResultMatch:
+                case EVVerifyResultMatchWithEnroll:
+                {
+                    NSLog(@"Verifying: verified=%d; userKey=%@ error=%@", YES, userKey != nil ? [[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding] : @"nil", @"none");
+                    verifyResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsArray:@[@(YES), userKey != nil ? [[NSString alloc] initWithData:userKey encoding:NSUTF8StringEncoding] : @"nil"]];
+                   
+                    [[self.viewController.view viewWithTag:990] removeFromSuperview];
+                    [message removeFromSuperview];
+                    [progress removeFromSuperview];
+                    [counter removeFromSuperview];
+                    [scanOverlay removeFromSuperview];
+                    if (verifyResult) {
+                        [self.commandDelegate sendPluginResult:verifyResult callbackId:_latestCommand.callbackId];
+                    }
+                    self.hasPendingOperation = NO;
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
         }];
+        
+       
     }
 }
 
@@ -247,6 +327,23 @@
     NSLog(@"%li", (long)newEyeStatus);
     //self.scanningOverlay.targetHighlighted = NO;
     switch (newEyeStatus) {
+        case EVEyeStatusTooClose:{
+            NSLog(@"%@", @"Eyes coo close");
+            
+            message.text = @"Eyes coo close";
+            //EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
+            
+            //[ev continueAuth];
+            
+            //result = [CDVPluginResult resultWithStatus:CDVCommandStatus_INVALID_ACTION messageAsString:@"Position your eyes in front of front camera (about 20cm to device)"];
+            //EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
+            //[ev cancel];
+            //if (result) {
+            //    [self.commandDelegate sendPluginResult:result callbackId:_latestCommand.callbackId];
+            //}
+            //self.hasPendingOperation = NO;
+    }
+    break;
         case EVEyeStatusNoEye:{
             NSLog(@"%@", @"Position your eyes in the window");
             
