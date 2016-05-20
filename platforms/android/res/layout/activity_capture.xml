@@ -3,32 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".EVCaptureActivity"
-    android:orientation="vertical"
-    android:paddingTop="30dp">
+    android:paddingTop="100dp"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/capture_window"
         android:layout_width="match_parent"
-        android:layout_height="220dp">
+        android:layout_height="180dp">
 
         <RelativeLayout
             android:id="@+id/capture_overlay"
+
             android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <biz.incoding.silentshot.TargetRectangle
+                android:layout_marginTop="100dp"
                 android:id="@+id/capture_target_box"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </biz.incoding.silentshot.TargetRectangle>
 
             <TextView android:id="@+id/capture_counter_text"
+                android:layout_marginTop="100dp"
                 android:textColor = "#5C8A00"
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:layout_centerHorizontal = "true"
-                android:textSize = "60sp"/>
+                android:textSize = "50sp"/>
 
 
         </RelativeLayout>
@@ -39,6 +42,7 @@
         android:id="@+id/capture_progress_and_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
         android:layout_below="@id/capture_window">
 
         <ProgressBar android:id="@+id/capture_enroll_progress"

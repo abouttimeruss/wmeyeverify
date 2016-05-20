@@ -64,7 +64,7 @@ public class TargetRectangle extends RelativeLayout {
 
         leftRightMargin = (int) (density * LEFT_RIGHT_MARGIN_FAR);
         topBottomMargin = (int) (density * TOP_BOTTOM_MARGIN_FAR);
-        availableHeight = (int) (200.0f * density);
+        availableHeight = (int) (160.0f * density);
 
         targetCornerLength = (int) (20.0f * density);
         targetStrokeWidth = 3.0f * density;
