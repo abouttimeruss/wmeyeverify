@@ -278,6 +278,7 @@ public class EVCaptureActivity extends BaseActivity {
 
     private synchronized void addVideoOverlays() {
 
+//        View parent = (View) service_overlay.getParent();
         if (0 == overlay_width) {
             overlay_width = service_overlay.getWidth();
             overlay_height = service_overlay.getHeight();
@@ -287,8 +288,14 @@ public class EVCaptureActivity extends BaseActivity {
             ((ViewGroup)service_overlay.getParent()).removeView(service_overlay);
         }
         DisplayMetrics metrics = new DisplayMetrics();
+//        ViewGroup.LayoutParams p = parent.getLayoutParams();
+//        p.height = (int) (120*metrics.density);
+
+//        parent.setLayoutParams(p);
+
+
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        overlay_top = (int) (30*metrics.density);
+        overlay_top = (int) (100*metrics.density);
         WindowManager windowManager = (WindowManager) getBaseContext().getSystemService(Context.WINDOW_SERVICE);
 
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(overlay_width, overlay_height, overlay_left, overlay_top, WindowManager.LayoutParams.TYPE_TOAST, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
@@ -303,7 +310,9 @@ public class EVCaptureActivity extends BaseActivity {
             //already added
         }
 
+
         service_overlay.setVisibility(View.VISIBLE);
+
 
         target_box.setTargetSuccess(false);
         target_box.startScanning();

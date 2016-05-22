@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/capture_window"
         android:layout_width="match_parent"
-        android:layout_height="180dp">
+        android:layout_height="190dp">
 
         <RelativeLayout
             android:id="@+id/capture_overlay"
@@ -19,14 +19,13 @@
             android:layout_height="match_parent">
 
             <biz.incoding.silentshot.TargetRectangle
-                android:layout_marginTop="100dp"
+
                 android:id="@+id/capture_target_box"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             </biz.incoding.silentshot.TargetRectangle>
 
             <TextView android:id="@+id/capture_counter_text"
-                android:layout_marginTop="100dp"
                 android:textColor = "#5C8A00"
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
