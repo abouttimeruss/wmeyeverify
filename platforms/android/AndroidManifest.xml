@@ -30,7 +30,7 @@
             android:label="SilentShot"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar"
+
             android:windowSoftInputMode="adjustResize">
             <intent-filter android:label="SilentShot">
                 <action android:name="android.intent.action.MAIN" />
@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name="EVCaptureActivity"
-            android:theme="@android:style/Theme.Translucent"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
 
     </application>
 

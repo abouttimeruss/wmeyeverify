@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".EVCaptureActivity"
-    android:paddingTop="100dp"
+    android:layout_marginTop="100dp"
     android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/capture_window"
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
         android:layout_height="190dp">
 
