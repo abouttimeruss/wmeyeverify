@@ -60,8 +60,4 @@ public abstract class BaseActivity extends Activity {
     public static void deleteLicenseCertificate() {
         SharedGlobals.deleteLicenseCertificate(getContext());
     }
-    @Override
-    public void onBackPressed()
-    {
-    }
 }
