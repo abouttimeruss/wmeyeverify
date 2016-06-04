@@ -97,7 +97,7 @@ public class IrisAccess  extends CordovaPlugin {
                         }
                     } else {
                         String message = intent.getStringExtra("result");
-                        PluginResult r = new PluginResult(PluginResult.Status.INVALID_ACTION,message);
+                        PluginResult r = new PluginResult(PluginResult.Status.OK,message);
                         r.setKeepCallback(true);
                         callbackContext.sendPluginResult(r);
                     }

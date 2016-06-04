@@ -3,21 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".EVCaptureActivity"
-    android:orientation="vertical"
-    android:paddingTop="30dp">
+    android:layout_marginTop="100dp"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/capture_window"
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
-        android:layout_height="220dp">
+        android:layout_height="190dp">
 
         <RelativeLayout
             android:id="@+id/capture_overlay"
+
             android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <biz.incoding.silentshot.TargetRectangle
+
                 android:id="@+id/capture_target_box"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -28,7 +31,7 @@
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:layout_centerHorizontal = "true"
-                android:textSize = "60sp"/>
+                android:textSize = "50sp"/>
 
 
         </RelativeLayout>
@@ -39,6 +42,7 @@
         android:id="@+id/capture_progress_and_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
         android:layout_below="@id/capture_window">
 
         <ProgressBar android:id="@+id/capture_enroll_progress"
