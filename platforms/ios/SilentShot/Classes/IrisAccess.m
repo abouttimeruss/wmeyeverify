@@ -405,13 +405,22 @@
     NSLog(@"isFinished: %d ",isFinished);
     if(!isFinished)
     {
-        EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
+        //EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
 
-        [ev continueAuth];
+        //[ev continueAuth];
         
     }
 }
 
+
+-(void)clearUI
+{
+    [[self.viewController.view viewWithTag:990] removeFromSuperview];
+    [message removeFromSuperview];
+    [progress removeFromSuperview];
+    [counter removeFromSuperview];
+    [scanOverlay removeFromSuperview];
+}
 
 
 
