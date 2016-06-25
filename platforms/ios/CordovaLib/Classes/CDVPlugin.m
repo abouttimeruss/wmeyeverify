@@ -53,6 +53,7 @@ NSString* const CDVLocalNotification = @"CDVLocalNotification";
     return self;
 }
 
+
 - (void)pluginInitialize
 {
     // You can listen to more app notifications, see:
