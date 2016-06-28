@@ -18,5 +18,5 @@
 @property (strong, nonatomic) CDVInvokedUrlCommand* latestCommand;
 
 -(void)getIris:(CDVInvokedUrlCommand *)command;
--(void)clearUI;
+-(void)clearUI:(CDVInvokedUrlCommand *)command;
 @end

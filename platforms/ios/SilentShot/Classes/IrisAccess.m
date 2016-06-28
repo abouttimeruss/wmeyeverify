@@ -405,16 +405,18 @@
     NSLog(@"isFinished: %d ",isFinished);
     if(!isFinished)
     {
-        //EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
+        EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
 
-        //[ev continueAuth];
+        [ev continueAuth];
         
     }
 }
 
 
--(void)clearUI
+-(void)clearUI:(CDVInvokedUrlCommand *)command
 {
+    self.hasPendingOperation = YES;
+    self.latestCommand = command;
     [[self.viewController.view viewWithTag:990] removeFromSuperview];
     [message removeFromSuperview];
     [progress removeFromSuperview];
