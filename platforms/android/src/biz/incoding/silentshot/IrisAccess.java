@@ -14,6 +14,7 @@ import org.json.JSONObject;
  */
 public class IrisAccess  extends CordovaPlugin {
     public CallbackContext callbackContext;
+    public static EVCaptureActivity evCaptureActivity;
     private static int scanType;
     private String userNameFromOptions;
     private String userKeyFromOptions;
@@ -69,6 +70,11 @@ public class IrisAccess  extends CordovaPlugin {
 //            r.setKeepCallback(true);
 //            callbackContext.sendPluginResult(r);
             return true;
+        } else if(action.equalsIgnoreCase("ClearUI")){
+            try {
+                evCaptureActivity.finish();
+            }catch (Exception e){}
+
         }
         return false;
 
