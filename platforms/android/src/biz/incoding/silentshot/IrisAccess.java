@@ -74,6 +74,7 @@ public class IrisAccess  extends CordovaPlugin {
             try {
                 evCaptureActivity.finish();
             }catch (Exception e){}
+            return true;
 
         }
         return false;
