@@ -422,6 +422,11 @@
     [progress removeFromSuperview];
     [counter removeFromSuperview];
     [scanOverlay removeFromSuperview];
+    
+    EyeVerify *ev = [EyeVerifyLoader getEyeVerifyInstance];
+    if (ev) {
+        [ev cancel];
+    }
 }
 
 
