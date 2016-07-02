@@ -104,6 +104,7 @@ public class EVCaptureActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        IrisAccess.evCaptureActivity = this;
 
         setContentView(getResources().getIdentifier("activity_capture","layout",getPackageName()));
         service_window = (ViewGroup) findViewById(getResources().getIdentifier("capture_window", "id", getPackageName()));
