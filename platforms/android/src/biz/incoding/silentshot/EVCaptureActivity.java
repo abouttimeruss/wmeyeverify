@@ -10,12 +10,12 @@ import android.graphics.drawable.ClipDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -56,7 +56,7 @@ public class EVCaptureActivity extends BaseActivity {
     public static final String USER_ID_KEY = "USER_ID";
     public static final String USERKEY_KEY = "USER_KEY";
 
-    private enum MESSAGE_STATE { ALERT, NEW_SESSION, ERROR, ABORT}
+    private enum MESSAGE_STATE {ALERT, NEW_SESSION, ERROR, ABORT}
 
     private static final String SHARED_PREFERENCES = "EVServiceSampleActivity-SharedPreferences";
     private static final String PUBLIC_KEY_PREFERENCE = "publicKey";
@@ -98,21 +98,30 @@ public class EVCaptureActivity extends BaseActivity {
     private int currentResult = RESULT_CANCELED;
     private String currentResultString = "";
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         IrisAccess.evCaptureActivity = this;
 
-        setContentView(getResources().getIdentifier("activity_capture","layout",getPackageName()));
+        setContentView(getResources().getIdentifier("activity_capture", "layout", getPackageName()));
+
+        findViewById(android.R.id.content).getRootView().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                //event.setLocation(event.getX());
+                IrisAccess._cordova.findViewById(android.R.id.content).getRootView().dispatchTouchEvent(event);
+                return true;
+            }
+        });
+
+
         service_window = (ViewGroup) findViewById(getResources().getIdentifier("capture_window", "id", getPackageName()));
         mServiceClient = new EVServiceClient(mListener, new EVServiceProperties("1DBRJYSHENYXWOK0"));
         //mServiceClient = new EVServiceClient(mListener, new EVServiceProperties(BaseActivity.readLicenseCertificate()));
 
         Intent intent = getIntent();
-
 
 
         servicePackageName = intent.getStringExtra(SERVICE_PACKAGE_KEY);
@@ -127,7 +136,7 @@ public class EVCaptureActivity extends BaseActivity {
             @Override
             public void run() {
                 Intent intent = new Intent();
-                intent.putExtra("result",  currentResultString);
+                intent.putExtra("result", currentResultString);
                 setResult(currentResult, intent);
                 finish();
             }
@@ -163,8 +172,8 @@ public class EVCaptureActivity extends BaseActivity {
         ClipDrawable clipProgress = new ClipDrawable(progress, Gravity.LEFT,
                 ClipDrawable.HORIZONTAL);
 
-        LayerDrawable layerlist = new LayerDrawable(new Drawable[] {
-                background, clipProgress });
+        LayerDrawable layerlist = new LayerDrawable(new Drawable[]{
+                background, clipProgress});
         layerlist.setId(0, android.R.id.background);
         layerlist.setId(1, android.R.id.progress);
 
@@ -187,7 +196,7 @@ public class EVCaptureActivity extends BaseActivity {
         if (isMidSession) {
             Intent intent = new Intent();
             intent.putExtra("result", "Incomplete process, you will have to retry.");
-                    setResult(currentResult, intent);
+            setResult(currentResult, intent);
             finish();
         } else if (!hasLaunched) {
             //must occur after window is available
@@ -230,14 +239,14 @@ public class EVCaptureActivity extends BaseActivity {
             //Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             currentResultString = e.getMessage();
             Intent intent = new Intent();
-            intent.putExtra("result",  currentResultString);
+            intent.putExtra("result", currentResultString);
             setResult(currentResult, intent);
             finish();
             e.printStackTrace();
         } catch (EVServiceBusyException e) {
             //Toast.makeText(getApplicationContext(), "Cannot continue, currently busy", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent();
-            intent.putExtra("result",  "Cannot continue, currently busy");
+            intent.putExtra("result", "Cannot continue, currently busy");
             setResult(currentResult, intent);
             finish();
         }
@@ -246,7 +255,7 @@ public class EVCaptureActivity extends BaseActivity {
     private void startInactivityTimer() {
 
         mIdleTimer = new Handler();
-        mIdleTimer.postDelayed(mIdleRunnable, 1000 * (killSwitchTimeOut != 0? killSwitchTimeOut : 180));
+        mIdleTimer.postDelayed(mIdleRunnable, 1000 * (killSwitchTimeOut != 0 ? killSwitchTimeOut : 180));
     }
 
     private void cancelInactivityTimer() {
@@ -286,7 +295,7 @@ public class EVCaptureActivity extends BaseActivity {
             overlay_top = service_overlay.getTop();
             overlay_left = service_overlay.getLeft();
 
-            ((ViewGroup)service_overlay.getParent()).removeView(service_overlay);
+            ((ViewGroup) service_overlay.getParent()).removeView(service_overlay);
         }
         DisplayMetrics metrics = new DisplayMetrics();
 //        ViewGroup.LayoutParams p = parent.getLayoutParams();
@@ -296,13 +305,13 @@ public class EVCaptureActivity extends BaseActivity {
 
 
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        overlay_top = (int) (100*metrics.density);
+        overlay_top = (int) (100 * metrics.density);
         WindowManager windowManager = (WindowManager) getBaseContext().getSystemService(Context.WINDOW_SERVICE);
 
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(overlay_width, overlay_height, overlay_left, overlay_top, WindowManager.LayoutParams.TYPE_TOAST, WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
                 | WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL
-                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, PixelFormat.RGBA_8888 );
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE, PixelFormat.RGBA_8888);
         params.gravity = Gravity.TOP | Gravity.CENTER;
 
         try {
@@ -325,9 +334,9 @@ public class EVCaptureActivity extends BaseActivity {
 
         try {
             windowManager.removeViewImmediate(service_overlay);
-        } catch ( Exception e) { }
+        } catch (Exception e) {
+        }
     }
-
 
 
     void reconfigureProgressBar() {
@@ -344,9 +353,9 @@ public class EVCaptureActivity extends BaseActivity {
 
         int value = 0;
 
-        if (step<=0) {
+        if (step <= 0) {
             value = 0;
-        } else if (step>=totalSteps) {
+        } else if (step >= totalSteps) {
             value = enroll_progress.getMax();
         } else {
             value = step * enroll_progress.getMax() / totalSteps;
@@ -405,7 +414,7 @@ public class EVCaptureActivity extends BaseActivity {
         @Override
         public void onWindowFailure() {
             Intent intent = new Intent();
-            intent.putExtra("result",  "Camera unavailable. Please restart the device.");
+            intent.putExtra("result", "Camera unavailable. Please restart the device.");
             setResult(currentResult, intent);
             finish();
         }
@@ -414,7 +423,7 @@ public class EVCaptureActivity extends BaseActivity {
         public void handleEvent(EVEyeRegionsChangedEvent event) {
             // Log.d(TAG, "Handle EVEyeRegionsChangedEvent: previewLeftX=" + event.getOriginalPreviewLeftX() + "; previewLeftY=" + event.getOriginalPreviewLeftY() + "; previewLeftW=" + event.getOriginalPreviewLeftW() + "; previewLeftH=" + event.getOriginalPreviewLeftH());
 
-            if (currentEyeStatus== EVEnums.EyeStatus.None ) {
+            if (currentEyeStatus == EVEnums.EyeStatus.None) {
                 return;
             }
 
@@ -429,8 +438,8 @@ public class EVCaptureActivity extends BaseActivity {
             Integer rightW = event.getPreviewRightW();
             Integer rightH = event.getPreviewRightH();
 
-            if (leftH!=null && leftW!=null && leftX!=null && leftY!=null
-                    && rightX!=null && rightY!=null && rightW!=null && rightH!=null) {
+            if (leftH != null && leftW != null && leftX != null && leftY != null
+                    && rightX != null && rightY != null && rightW != null && rightH != null) {
 
                 int screenW = service_window.getWidth();
                 int screenH = service_window.getHeight();
@@ -571,22 +580,20 @@ public class EVCaptureActivity extends BaseActivity {
                     intent.putExtra("result", currentResultString);
                     setResult(currentResult, intent);
                     finish();
-                }
-                else if (completion.isIncomplete()) {
+                } else if (completion.isIncomplete()) {
                     capture_notification_text.setText("We could not enroll you");
                     currentResultString = "We could not enroll you";
                     currentResult = RESULT_CANCELED;
                     Intent intent = new Intent();
-                    intent.putExtra("result",  currentResultString);
+                    intent.putExtra("result", currentResultString);
                     setResult(currentResult, intent);
                     finish();
-                }
-                else if (completion.wasAborted()) {
+                } else if (completion.wasAborted()) {
                     if (SharedGlobals.isLicensingError(completion.getAbortResult())) {
                         BaseActivity.deleteLicenseCertificate();
 
                         Intent intent = new Intent();
-                        intent.putExtra("result",  "LICENSE ERROR");
+                        intent.putExtra("result", "LICENSE ERROR");
                         setResult(currentResult, intent);
 
                         finish();
@@ -621,7 +628,7 @@ public class EVCaptureActivity extends BaseActivity {
                         break;
                 }
 
-                Log.d(TAG, "Finished enrollmentCompleted: success="+ completion.isSuccess());
+                Log.d(TAG, "Finished enrollmentCompleted: success=" + completion.isSuccess());
 
             } catch (Throwable ex) {
                 Log.e(TAG, "Failed to complete enrollment.", ex);
@@ -637,8 +644,8 @@ public class EVCaptureActivity extends BaseActivity {
                 boolean signatureVerify = false;
                 if (completion.isSuccess()) {
 
-                    if (completion.getSignedNonce() != null && completion.getSignedNonce().length>0) {
-                        Log.d(TAG, "Verifying signature: mNonce="+ EVServiceHelper.data2string(mNonce)+"; signedNonce=" + EVServiceHelper.data2string(completion.getSignedNonce()));
+                    if (completion.getSignedNonce() != null && completion.getSignedNonce().length > 0) {
+                        Log.d(TAG, "Verifying signature: mNonce=" + EVServiceHelper.data2string(mNonce) + "; signedNonce=" + EVServiceHelper.data2string(completion.getSignedNonce()));
 
                         SharedPreferences prefs = getSharedPreferences(SHARED_PREFERENCES, Activity.MODE_PRIVATE);
                         byte[] encodedPublicKey = EVServiceHelper.string2data(prefs.getString(PUBLIC_KEY_PREFERENCE, null));
@@ -661,18 +668,16 @@ public class EVCaptureActivity extends BaseActivity {
                     }
 
                     capture_notification_text.setText("Verified");
-                }
-                else if (completion.wasAborted()) {
+                } else if (completion.wasAborted()) {
                     showAbortMessages(completion.getAbortResult());
                     currentResult = RESULT_CANCELED;
                     Intent intent = new Intent();
-                    intent.putExtra("result",  completion.getAbortResult());
+                    intent.putExtra("result", completion.getAbortResult());
                     setResult(currentResult, intent);
                     finish();
 
                     return;
-                }
-                else {
+                } else {
 
                     switch (completion.getVerificationResult()) {
                         case bad_quality:
@@ -695,20 +700,22 @@ public class EVCaptureActivity extends BaseActivity {
                 }
 
 
-                Log.d(TAG, "Finished verifyCompleted: success="+ completion.isSuccess()+"; signatureVerify="+signatureVerify);
-                if(completion.isSuccess()) {
+                Log.d(TAG, "Finished verifyCompleted: success=" + completion.isSuccess() + "; signatureVerify=" + signatureVerify);
+                if (completion.isSuccess()) {
                     currentResult = RESULT_OK;
-                    currentResultString =  EVServiceHelper.data2string(completion.getSignedNonce());
+                    currentResultString = EVServiceHelper.data2string(completion.getSignedNonce());
                     Intent intent = new Intent();
                     intent.putExtra("result", currentResultString);
-                    setResult(currentResult,intent);
+                    setResult(currentResult, intent);
                     finish();
                 }
             } catch (Throwable ex) {
                 Log.e(TAG, "Failed to complete verification.", ex);
             }
         }
-    };
+    }
+
+    ;
     private EVServiceListener mListener = new EVListener();
 
     private void showError(SharedGlobals.ERROR_TYPE theError) {
@@ -734,15 +741,15 @@ public class EVCaptureActivity extends BaseActivity {
                 break;
             case LICENSE_INVALID:
                 message_state = MESSAGE_STATE.ABORT;
-                currentResultString = getString(getResources().getIdentifier("capture_license_invalid_suggestion","string",getPackageName()));
+                currentResultString = getString(getResources().getIdentifier("capture_license_invalid_suggestion", "string", getPackageName()));
                 break;
             case LICENSE_EXPIRED:
                 message_state = MESSAGE_STATE.ABORT;
-                currentResultString = getString(getResources().getIdentifier("capture_license_expired_suggestion","string",getPackageName()));
+                currentResultString = getString(getResources().getIdentifier("capture_license_expired_suggestion", "string", getPackageName()));
                 break;
             case LICENSE_LIMITED:
                 message_state = MESSAGE_STATE.ABORT;
-                currentResultString = getString(getResources().getIdentifier("capture_license_limited_suggestion","string",getPackageName()));
+                currentResultString = getString(getResources().getIdentifier("capture_license_limited_suggestion", "string", getPackageName()));
                 break;
             case INTERNET:
                 message_state = MESSAGE_STATE.ABORT;
@@ -817,7 +824,7 @@ public class EVCaptureActivity extends BaseActivity {
 
     private void showAbortMessages(EVEnums.abort_reason abortReason) {
 
-        switch(abortReason) {
+        switch (abortReason) {
             case license_invalid:
                 showError(SharedGlobals.ERROR_TYPE.LICENSE_INVALID);
                 break;

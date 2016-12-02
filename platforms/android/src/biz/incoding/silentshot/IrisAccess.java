@@ -1,6 +1,9 @@
 package biz.incoding.silentshot;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.view.MotionEvent;
+import android.view.View;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -18,6 +21,7 @@ public class IrisAccess  extends CordovaPlugin {
     private static int scanType;
     private String userNameFromOptions;
     private String userKeyFromOptions;
+    public static Activity _cordova;
 
 
 
@@ -25,7 +29,13 @@ public class IrisAccess  extends CordovaPlugin {
     public boolean execute(String action, JSONArray args,
                            CallbackContext callbackContext) throws JSONException {
         this.callbackContext = callbackContext;
-
+        _cordova =  this.cordova.getActivity();
+        _cordova.findViewById(android.R.id.content).getRootView().setOnTouchListener (new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
         if (action.equalsIgnoreCase("GetIris")) {
 
             if(args.length() > 0)
@@ -74,6 +84,7 @@ public class IrisAccess  extends CordovaPlugin {
             try {
                 evCaptureActivity.finish();
             }catch (Exception e){}
+            return true;
 
         }
         return false;
@@ -83,6 +94,7 @@ public class IrisAccess  extends CordovaPlugin {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         switch (requestCode) {
+
             case 100: //integer matching the integer suplied when starting the activity
                 if(intent != null ){
                     if (resultCode == android.app.Activity.RESULT_OK) {
@@ -115,3 +127,4 @@ public class IrisAccess  extends CordovaPlugin {
     }
 
 }
+
