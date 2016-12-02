@@ -438,4 +438,55 @@ enum CDVDestinationType {
     return newImage;
 }
 
+-(void)clearUI:(CDVInvokedUrlCommand *)command
+{
+    self.hasPendingOperation = YES;
+    self.latestCommand = command;
+    [[self.viewController.view viewWithTag:990] removeFromSuperview];
+    //[message removeFromSuperview];
+    //[progress removeFromSuperview];
+    //[counter removeFromSuperview];
+    //[scanOverlay removeFromSuperview];
+   
+}
+
+
+-(void)temp
+{
+    /*UIView *vv = [[UIView alloc] initWithFrame:CGRectMake(20, 100, self.viewController.view.frame.size.width - 40, 120)];
+    [self.viewController.view addSubview:vv];
+    vv.tag = 990;
+    message = [[UILabel alloc] initWithFrame:CGRectMake(20, 230, self.viewController.view.frame.size.width - 40, 70)];
+    message.textAlignment = NSTextAlignmentCenter;
+    message.font = [UIFont systemFontOfSize:16];
+    message.backgroundColor = [UIColor whiteColor];
+    message.textColor = [UIColor darkTextColor];
+    message.numberOfLines = 0;
+    message.lineBreakMode = NSLineBreakByWordWrapping;
+    [self.viewController.view addSubview:message];
+    
+    counter = [[UILabel alloc] initWithFrame:CGRectMake(self.viewController.view.frame.size.width / 2 - 17, 85, 34, 34)];
+    counter.textAlignment = NSTextAlignmentCenter;
+    counter.font = [UIFont boldSystemFontOfSize:30];
+    counter.backgroundColor = [UIColor clearColor];
+    counter.textColor = [self colorFromHexString:@"5C8A00"];
+    counter.alpha = 0.9;
+    
+    progress = [[UIProgressView alloc] initWithFrame:CGRectMake(20, 220, self.viewController.view.frame.size.width - 40, 3)];
+    progress.progress = 0.0;
+    progress.progressTintColor = [self colorFromHexString:@"84B533"];
+    progress.backgroundColor = [UIColor whiteColor];
+    [self.viewController.view addSubview:progress];
+    
+    
+    scanOverlay = [[ScanningOverlayView alloc] initWithFrame:vv.frame];
+    scanOverlay.targetHighlighted = YES;
+    scanOverlay.hidden = YES;
+    scanOverlay.backgroundColor = [UIColor clearColor];
+    [self.viewController.view addSubview:scanOverlay];
+    [self.viewController.view addSubview:counter];
+    
+    [ev setCaptureView:vv];*/
+}
+
 @end

@@ -69,9 +69,6 @@
     <feature name="SilentShot">
         <param name="ios-package" value="SilentShot" />
     </feature>
-    <feature name="EyeVerifyLoader">
-        <param name="ios-package" value="EyeVerifyLoader" />
-    </feature>
     <feature name="IrisAccess">
         <param name="ios-package" value="IrisAccess" />
         <param name="android-package" value="biz.incoding.silentshot.IrisAccess" />

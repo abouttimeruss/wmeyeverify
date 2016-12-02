@@ -93,12 +93,6 @@
         <param name="ios-package" value="SilentShot" />
     </feature>
     <feature name="IrisAccess">
-        <param name="ios-package" value="IrisAccess" />
-    </feature>
-    <feature name="EyeVerifyLoader">
-        <param name="ios-package" value="EyeVerifyLoader" />
-    </feature>
-    <feature name="IrisAccess">
         <param name="android-package" value="biz.incoding.silentshot.IrisAccess"/>
     </feature>
     <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
