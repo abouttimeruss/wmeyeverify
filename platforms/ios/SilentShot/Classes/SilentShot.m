@@ -7,7 +7,6 @@
 //
 
 #import "SilentShot.h"
-#import <Cordova/NSData+Base64.h>
 
 #define CDV_PHOTO_PREFIX @"silentshot_photo_"
 
@@ -250,7 +249,7 @@ enum CDVDestinationType {
                                                                   result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[[NSURL fileURLWithPath:filePath] absoluteString]];
                                                               }
                                                           } else {
-                                                              result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[data base64EncodedString]];
+                                                              result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:[data base64EncodedStringWithOptions:0]];
                                                           }
                                                           
                                                           
